@@ -38,16 +38,16 @@
         
         .header {
             background: white;
-            padding: 24px 16px;
+            padding: 12px 16px;
             border-bottom: 1px solid #e5e7eb;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
         .header h1 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: #111827;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         
         .header p {
@@ -84,7 +84,7 @@
         .header-unified {
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 20px 16px;
+            padding: 10px 16px;
             position: sticky;
             top: 0;
             z-index: 10;
@@ -94,6 +94,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 32px;
+            height: 32px;
         }
         
         .content {
@@ -537,13 +539,13 @@
         
         /* Settings Links */
         .settings-link {
-            padding: 16px 20px;
-            font-size: 18px;
+            padding: 12px 16px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 12px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1011,17 +1013,17 @@
 
             <div class="content">
                 <!-- Current Balance & Plan -->
-                <div class="card" style="text-align: center;">
-                    <div style="font-size: 18px; font-weight: bold; color: #111827; margin-bottom: 4px;">Current Balance</div>
-                    <div style="font-size: 32px; font-weight: bold; color: #14b8a6; margin-bottom: 16px;">$42.50</div>
+                <div class="card" style="text-align: center; padding: 12px; min-height: 60px;">
+                    <div style="font-size: 14px; font-weight: bold; color: #111827; margin-bottom: 2px;">Current Balance</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 8px;">$42.50</div>
                     
-                    <div style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 4px;">Current Plan Valid Until:</div>
-                    <div style="font-size: 20px; font-weight: bold; color: #14b8a6;">27.10.2025</div>
+                    <div style="font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 2px;">Current Plan Valid Until:</div>
+                    <div style="font-size: 16px; font-weight: bold; color: #14b8a6;">27.10.2025</div>
                 </div>
 
                 <!-- Subscription Options -->
-                <div class="card">
-                    <h3 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px; text-align: center;">Choose your Plan</h3>
+                <div class="card" style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(13, 148, 136, 0.05) 100%); border: 2px solid rgba(20, 184, 166, 0.3); box-shadow: 0 8px 32px rgba(20, 184, 166, 0.2);">
+                    <h3 style="font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 20px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Choose your Plan</h3>
                     
                     <div class="subscription-options">
                         <!-- 1 Month -->
@@ -1075,10 +1077,10 @@
 
             <div class="content">
                 <!-- Settings Controls -->
-                <div class="card">
+                <div class="card" style="padding: 12px; min-height: 60px;">
                     <!-- Language Setting -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
-                        <div style="font-size: 18px; font-weight: bold; color: #111827;">Language</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f3f4f6;">
+                        <div style="font-size: 16px; font-weight: bold; color: #111827;">Language</div>
                         <div class="language-toggle" onclick="toggleLanguage()">
                             <span class="lang-text" id="languageText">En</span>
                             <div class="toggle-switch">
@@ -1089,8 +1091,8 @@
                     </div>
                     
                     <!-- Theme Setting -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0;">
-                        <div style="font-size: 18px; font-weight: bold; color: #111827;">Theme</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
+                        <div style="font-size: 16px; font-weight: bold; color: #111827;">Theme</div>
                         <div class="theme-toggle" onclick="toggleTheme()">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #f59e0b;">
                                 <circle cx="12" cy="12" r="5" fill="currentColor"/>
@@ -1107,7 +1109,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div style="margin-top: 24px;">
+                <div style="margin-top: 16px;">
                     <div class="settings-link" onclick="showPage('referral')" style="color: #111827;">
                         Referral Program
                     </div>
