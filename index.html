@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duna VPN - Main</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+            color: #1f2937;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px;
+        }
+        
+        .header {
+            background: white;
+            padding: 24px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .header p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            background: #14b8a6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-content-new {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header-unified {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content {
+            padding: 24px 16px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+        
+        .balance-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+        }
+        
+        .balance-card-new {
+            text-align: center;
+        }
+        
+        .balance-info-new {
+            text-align: center;
+        }
+        
+        .balance-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .balance-amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #14b8a6;
+        }
+        
+        .btn {
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .btn-outline {
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #14b8a6, #0d9488, #8b5cf6) border-box;
+            color: #14b8a6;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #14b8a6, #0d9488, #8b5cf6) border-box;
+            background-color: rgba(240, 253, 250, 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 50%, #0f766e 100%);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .vpn-card {
+            text-align: center;
+            align-items: center;
+        }
+        
+        .vpn-card-new {
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .vpn-icon {
+            width: 64px;
+            height: 64px;
+            background: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        .vpn-icon svg {
+            width: 32px;
+            height: 32px;
+            color: #6b7280;
+        }
+        
+        .vpn-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        
+        .vpn-card p {
+            color: #6b7280;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        
+        .invite-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-direction: row;
+        }
+        
+        .invite-card-new {
+            text-align: center;
+            min-height: 140px;
+        }
+        
+        .invite-info-new {
+            text-align: center;
+        }
+        
+        .invite-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0fdfa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .invite-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #14b8a6;
+        }
+        
+        .invite-info {
+            flex: 1;
+        }
+        
+        .invite-info h3 {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .invite-info p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .stat-card {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #14b8a6;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 8px 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #6b7280;
+        }
+        
+        .nav-item.active {
+            color: #14b8a6;
+            background: #f0fdfa;
+        }
+        
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+        
+        .nav-item span {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .plans-grid {
+            display: grid;
+            gap: 16px;
+        }
+        
+        .plan-card {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .plan-card:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .plan-card.selected {
+            border: 2px solid #14b8a6;
+            background: #f0fdfa;
+        }
+        
+        .plan-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .plan-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .plan-badge {
+            background: #14b8a6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .plan-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #14b8a6;
+            margin-bottom: 12px;
+        }
+        
+        .plan-features {
+            list-style: none;
+        }
+        
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .check-icon {
+            width: 16px;
+            height: 16px;
+            color: #10b981;
+        }
+        
+        .settings-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .settings-item:hover {
+            background: #f9fafb;
+        }
+        
+        .settings-icon {
+            width: 40px;
+            height: 40px;
+            background: #f0fdfa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .settings-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #14b8a6;
+        }
+        
+        .settings-info {
+            flex: 1;
+        }
+        
+        .settings-info h3 {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .settings-info p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            color: #9ca3af;
+        }
+        
+        /* Toggle Switch Styles */
+        .toggle-switch {
+            width: 50px;
+            height: 28px;
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+            border-radius: 14px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toggle-switch.active {
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
+        
+        .toggle-slider {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(22px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Settings Links */
+        .settings-link {
+            padding: 16px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .settings-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+        
+        .settings-link:hover {
+            background: rgba(240, 253, 250, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.15);
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lang-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+            transition: color 0.3s;
+        }
+        
+        .lang-text.active {
+            color: #14b8a6;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Back Button */
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-button:hover {
+            background: rgba(240, 253, 250, 0.8);
+            color: #14b8a6;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.15);
+        }
+        
+        .back-button svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .language-switch {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .lang-btn.active {
+            background: #14b8a6;
+            color: white;
+        }
+        
+        .lang-btn:not(.active) {
+            border: 2px solid #14b8a6;
+            color: #14b8a6;
+            background: white;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .payment-method {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #e5e7eb, #d1d5db) border-box;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+        
+        .payment-method:hover {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #14b8a6, #0d9488) border-box;
+            background-color: rgba(240, 253, 250, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.15);
+        }
+        
+        .payment-method.selected {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #14b8a6, #0d9488) border-box;
+            background-color: rgba(240, 253, 250, 0.9);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.2);
+        }
+        
+        .payment-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .payment-name {
+            font-weight: 500;
+            color: #111827;
+            font-size: 16px;
+        }
+        
+        .payment-balance {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 500;
+        }
+        
+        .payment-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.2s;
+        }
+        
+        .payment-method.selected .payment-radio {
+            border-color: #14b8a6;
+            background: #14b8a6;
+        }
+        
+        .payment-method.selected .payment-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .current-plan-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .subscription-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .subscription-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #e5e7eb, #d1d5db) border-box;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subscription-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+        
+        .subscription-option:hover {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #14b8a6, #0d9488) border-box;
+            background-color: rgba(240, 253, 250, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.15);
+        }
+        
+        .subscription-option.selected {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #14b8a6, #0d9488) border-box;
+            background-color: rgba(240, 253, 250, 0.9);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.2);
+        }
+        
+        .subscription-option.popular {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #14b8a6, #0d9488) border-box;
+            background-color: rgba(240, 253, 250, 0.8);
+        }
+        
+        .subscription-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .subscription-duration {
+            font-weight: 500;
+            color: #111827;
+            font-size: 16px;
+        }
+        
+        .subscription-price {
+            font-weight: bold;
+            color: #14b8a6;
+            font-size: 18px;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #14b8a6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Page -->
+        <div id="main-page" class="page active">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Current Balance Card -->
+                <div class="card balance-card-new">
+                    <div class="balance-info-new">
+                        <h3 style="font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 8px;">Current Balance</h3>
+                        <div class="balance-amount">$42.50</div>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 16px;" onclick="showPage('topup')">Charge Balance</button>
+                    <button class="btn btn-outline" style="margin-top: 12px;" onclick="showPage('plans')">Extend your plan</button>
+                </div>
+
+                <!-- VPN Connection Card -->
+                <div class="card vpn-card-new">
+                    <h3 style="font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 20px; text-align: center;">VPN Services</h3>
+                    <button class="btn btn-primary" style="margin-bottom: 12px;" onclick="showPage('plans')">Buy VPN</button>
+                    <button class="btn btn-outline" onclick="showPage('connect')">Connect VPN</button>
+                </div>
+
+                <!-- Invite Friend Card -->
+                <div class="card invite-card-new">
+                    <div class="invite-info-new">
+                        <h3 style="font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 8px;">Invite Friends</h3>
+                        <p style="color: #6b7280; font-size: 16px;">Earn up to 25% from every friend</p>
+                    </div>
+                    <button class="btn btn-outline" style="margin-top: 16px;" onclick="showPage('referral')">Invite</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Plans Page -->
+        <div id="plans-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Current Balance & Plan -->
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 18px; font-weight: bold; color: #111827; margin-bottom: 4px;">Current Balance</div>
+                    <div style="font-size: 32px; font-weight: bold; color: #14b8a6; margin-bottom: 16px;">$42.50</div>
+                    
+                    <div style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 4px;">Current Plan Valid Until:</div>
+                    <div style="font-size: 20px; font-weight: bold; color: #14b8a6;">27.10.2025</div>
+                </div>
+
+                <!-- Subscription Options -->
+                <div class="card">
+                    <h3 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px; text-align: center;">Choose your Plan</h3>
+                    
+                    <div class="subscription-options">
+                        <!-- 1 Month -->
+                        <div class="subscription-option" onclick="selectSubscription(this, '1month')">
+                            <div class="subscription-info">
+                                <span class="subscription-duration">1 month</span>
+                                <span class="subscription-price">$3</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 3 Months (Popular) -->
+                        <div class="subscription-option popular" onclick="selectSubscription(this, '3months')">
+                            <div class="popular-badge">Popular</div>
+                            <div class="subscription-info">
+                                <span class="subscription-duration">3 months</span>
+                                <span class="subscription-price">$8</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 12 Months -->
+                        <div class="subscription-option" onclick="selectSubscription(this, '12months')">
+                            <div class="subscription-info">
+                                <span class="subscription-duration">12 months</span>
+                                <span class="subscription-price">$30</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Free Trial -->
+                <div class="card" style="text-align: center;">
+                    <button class="btn btn-outline" style="border-color: #f59e0b; color: #f59e0b; background: white; margin-bottom: 8px;" onclick="showPage('connect')">2 days Free Trial</button>
+                    <div style="color: #6b7280; font-size: 12px;">New Users only</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Settings Controls -->
+                <div class="card">
+                    <!-- Language Setting -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                        <div style="font-size: 18px; font-weight: bold; color: #111827;">Language</div>
+                        <div class="language-toggle" onclick="toggleLanguage()">
+                            <span class="lang-text" id="languageText">En</span>
+                            <div class="toggle-switch">
+                                <div class="toggle-slider" id="languageToggle"></div>
+                            </div>
+                            <span class="lang-text" id="languageTextRu">Ru</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Theme Setting -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0;">
+                        <div style="font-size: 18px; font-weight: bold; color: #111827;">Theme</div>
+                        <div class="theme-toggle" onclick="toggleTheme()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #f59e0b;">
+                                <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <div class="toggle-switch">
+                                <div class="toggle-slider" id="themeToggle"></div>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #1e40af;">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div style="margin-top: 24px;">
+                    <div class="settings-link" onclick="showPage('referral')" style="color: #111827;">
+                        Referral Program
+                    </div>
+                    <div class="settings-link" onclick="showPage('paymenthistory')" style="color: #111827;">
+                        Payment History
+                    </div>
+                    <div class="settings-link" onclick="showPage('howtouse')" style="color: #111827;">
+                        How to Use
+                    </div>
+                    <div class="settings-link" onclick="showPage('loyalty')" style="color: #111827;">
+                        Loyalty Program
+                    </div>
+                    <div class="settings-link" onclick="showPage('about')" style="color: #111827;">
+                        About Us
+                    </div>
+                    <div class="settings-link" onclick="showPage('contact')" style="color: #111827;">
+                        Contact Us
+                    </div>
+                    <div class="settings-link" onclick="showPage('refund')" style="color: #111827;">
+                        Refund Policy
+                    </div>
+                    <div class="settings-link" onclick="showPage('privacy')" style="color: #111827;">
+                        Privacy Policy
+                    </div>
+                    <div class="settings-link" onclick="showPage('terms')" style="color: #111827;">
+                        Terms of Use
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connect VPN Page -->
+        <div id="connect-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- VPN Status -->
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div class="vpn-icon" style="background: #fef3c7; margin-bottom: 16px;">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #f59e0b;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">VPN Disconnected</h3>
+                        <p style="color: #6b7280; margin-bottom: 16px;">Click the link below to connect via HAPP</p>
+                        <button class="btn btn-primary" onclick="window.open('https://happ.app', '_blank')">Open HAPP</button>
+                    </div>
+                </div>
+
+                <!-- Manual Settings -->
+                <div class="card">
+                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Manual Settings</h3>
+                    <p style="color: #6b7280; margin-bottom: 16px; font-size: 14px;">Use these settings to manually configure VPN in any compatible app:</p>
+                    
+                    <div style="background: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Server Address:</label>
+                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">vpn.duna.com</div>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Port:</label>
+                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">1194</div>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Protocol:</label>
+                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">UDP</div>
+                        </div>
+                        <div>
+                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Username:</label>
+                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">user123</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-outline" style="width: 100%;" onclick="copySettings()">Copy Settings</button>
+                </div>
+
+                <!-- Connection Info -->
+                <div class="card">
+                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Connection Info</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">0ms</div>
+                            <div style="font-size: 14px; color: #6b7280;">Ping</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">0 MB</div>
+                            <div style="font-size: 14px; color: #6b7280;">Data Used</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referral Program Page -->
+        <div id="referral-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <!-- Referral Link -->
+                <div class="card">
+                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Your Referral Link</h3>
+                    <div style="background: #f9fafb; padding: 12px; border-radius: 8px; margin-bottom: 16px; font-family: monospace; font-size: 14px; word-break: break-all;">
+                        https://t.me/duna_vpn_bot?start=ref123456
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="copyReferralLink()">Copy Link</button>
+                </div>
+
+                <!-- Referral Stats -->
+                <div class="card">
+                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Your Statistics</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">12</div>
+                            <div style="font-size: 14px; color: #6b7280;">Total Referrals</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">$25.50</div>
+                            <div style="font-size: 14px; color: #6b7280;">Total Earned</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Available for Withdraw -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 4px;">Available for Withdraw</h3>
+                            <p style="color: #6b7280; font-size: 14px;">Cooldown: 7 days</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">$15.00</div>
+                            <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Up Page -->
+        <div id="topup-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Payment Amount -->
+                <div class="card" style="text-align: center;">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Enter amount to pay</h2>
+                    
+                    <!-- Amount Input -->
+                    <div style="position: relative; margin-bottom: 24px;">
+                        <input type="number" id="amountInput" value="10" min="1" max="1000" 
+                               style="width: 100%; padding: 16px 60px 16px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 24px; font-weight: bold; color: #14b8a6; background: #f9fafb; text-align: center;"
+                               oninput="updatePayButton()">
+                        <div style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #6b7280; font-size: 18px; font-weight: 600;">USD</div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="card">
+                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Select Payment Method</h3>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selectPaymentMethod(this, 'balance')">
+                            <div class="payment-info">
+                                <span class="payment-name">Pay from Balance</span>
+                                <span class="payment-balance">$42.50</span>
+                            </div>
+                            <div class="payment-radio"></div>
+                        </div>
+                        
+                        <div class="payment-method" onclick="selectPaymentMethod(this, 'telegram')">
+                            <div class="payment-info">
+                                <span class="payment-name">Telegram Stars</span>
+                            </div>
+                            <div class="payment-radio"></div>
+                        </div>
+                        
+                        <div class="payment-method" onclick="selectPaymentMethod(this, 'usdt')">
+                            <div class="payment-info">
+                                <span class="payment-name">USDT</span>
+                            </div>
+                            <div class="payment-radio"></div>
+                        </div>
+                        
+                        <div class="payment-method" onclick="selectPaymentMethod(this, 'ton')">
+                            <div class="payment-info">
+                                <span class="payment-name">TON</span>
+                            </div>
+                            <div class="payment-radio"></div>
+                        </div>
+                        
+                        <div class="payment-method" onclick="selectPaymentMethod(this, 'other')">
+                            <div class="payment-info">
+                                <span class="payment-name">Other Methods</span>
+                            </div>
+                            <div class="payment-radio"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Button -->
+                <div class="card">
+                    <button class="btn btn-primary" id="payButton" onclick="processPayment()" disabled>
+                        Pay $10
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment History Page -->
+        <div id="paymenthistory-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <!-- Payment History -->
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Payment History</h2>
+                    
+                    <!-- Transaction Item -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                        <div>
+                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Monthly Plan</div>
+                            <div style="font-size: 14px; color: #6b7280;">Dec 15, 2024</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$9.99</div>
+                            <div style="font-size: 12px; color: #10b981;">Completed</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transaction Item -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                        <div>
+                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Top Up Balance</div>
+                            <div style="font-size: 14px; color: #6b7280;">Dec 10, 2024</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$25.00</div>
+                            <div style="font-size: 12px; color: #10b981;">Completed</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transaction Item -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                        <div>
+                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Annual Plan</div>
+                            <div style="font-size: 14px; color: #6b7280;">Nov 20, 2024</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$99.99</div>
+                            <div style="font-size: 12px; color: #10b981;">Completed</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transaction Item -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                        <div>
+                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Referral Bonus</div>
+                            <div style="font-size: 14px; color: #6b7280;">Nov 15, 2024</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$2.50</div>
+                            <div style="font-size: 12px; color: #10b981;">Completed</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transaction Item -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0;">
+                        <div>
+                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Free Trial</div>
+                            <div style="font-size: 14px; color: #6b7280;">Nov 10, 2024</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">$0.00</div>
+                            <div style="font-size: 12px; color: #10b981;">Completed</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary Card -->
+                <div class="card">
+                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Summary</h3>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: #6b7280;">Total Deposits:</span>
+                        <span style="font-weight: 600; color: #111827;">$134.98</span>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: #6b7280;">Total Spent:</span>
+                        <span style="font-weight: 600; color: #111827;">$92.48</span>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px solid #f3f4f6;">
+                        <span style="color: #6b7280; font-weight: 600;">Current Balance:</span>
+                        <span style="font-weight: 600; color: #14b8a6; font-size: 18px;">$42.50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Use Page -->
+        <div id="howtouse-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Getting Started with Duna VPN</h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">1. Purchase a Plan</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Choose from our affordable VPN plans and make a payment using your preferred method.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">2. Connect via HAPP</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Use the HAPP app for easy one-click VPN connection. Download from your app store.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">3. Manual Configuration</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">For advanced users, configure VPN manually using our server details in any compatible app.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">4. Enjoy Secure Browsing</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Your internet traffic is now encrypted and your location is protected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loyalty Program Page -->
+        <div id="loyalty-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Earn Rewards with Duna VPN</h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">🎯 Referral Rewards</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Earn up to 25% commission for every friend you refer to Duna VPN.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">💎 Long-term Discounts</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Get special discounts for annual subscriptions and loyal customers.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">⭐ Premium Features</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Unlock premium servers and priority support as a loyal member.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">🎁 Exclusive Bonuses</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Receive bonus data and extended validity periods for active users.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Us Page -->
+        <div id="about-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">About Duna VPN</h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <p style="color: #6b7280; line-height: 1.6; margin-bottom: 16px;">Duna VPN is a leading provider of secure and reliable VPN services, committed to protecting your online privacy and freedom.</p>
+                        
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Our Mission</h3>
+                        <p style="color: #6b7280; line-height: 1.6; margin-bottom: 16px;">To provide fast, secure, and affordable VPN services that protect your digital privacy and allow unrestricted access to the internet.</p>
+                        
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Why Choose Duna VPN?</h3>
+                        <ul style="color: #6b7280; line-height: 1.6; padding-left: 20px;">
+                            <li>Military-grade encryption</li>
+                            <li>No-logs policy</li>
+                            <li>Fast global servers</li>
+                            <li>24/7 customer support</li>
+                            <li>Affordable pricing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Us Page -->
+        <div id="contact-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Get in Touch</h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">📧 Email Support</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">support@dunavpn.com</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">💬 Telegram</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">@DunaVPN_Support</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">🕒 Support Hours</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">24/7 Customer Support</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">⚡ Response Time</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Usually within 1-2 hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Refund Policy Page -->
+        <div id="refund-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Refund Policy</h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">30-Day Money-Back Guarantee</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">We offer a full refund within 30 days of purchase if you're not satisfied with our service.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">How to Request a Refund</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Contact our support team via email or Telegram with your order details and reason for refund.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Processing Time</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Refunds are processed within 5-7 business days to your original payment method.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Exceptions</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Refunds are not available for accounts that violate our terms of service or abuse our network.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Page -->
+        <div id="privacy-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Privacy Policy</h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">No-Logs Policy</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">We do not log, store, or monitor your online activities, browsing history, or personal data.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Data Collection</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">We only collect minimal information necessary for account management and payment processing.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Data Protection</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">All data is encrypted and protected using industry-standard security measures.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Third-Party Sharing</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">We never sell, rent, or share your personal information with third parties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms of Use Page -->
+        <div id="terms-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2L32 8V20C32 28 20 38 20 38S8 28 8 20V8L20 2Z" fill="#14b8a6" stroke="#0d9488" stroke-width="2"/>
+                            <path d="M12 20L18 26L28 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Duna VPN</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                <!-- Back Button -->
+                <button class="back-button" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back to Settings
+                </button>
+                
+                <div class="card">
+                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Terms of Use</h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Acceptable Use</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Use our service responsibly and in accordance with local laws and regulations.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Prohibited Activities</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">Illegal activities, copyright infringement, spam, and network abuse are strictly prohibited.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Service Availability</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">We strive for 99.9% uptime but cannot guarantee uninterrupted service.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Account Termination</h3>
+                        <p style="color: #6b7280; line-height: 1.6;">We reserve the right to terminate accounts that violate these terms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-content">
+                <div class="nav-item active" onclick="showPage('main')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span>Main</span>
+                </div>
+                <div class="nav-item" onclick="showPage('plans')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Plans</span>
+                </div>
+                <div class="nav-item" onclick="showPage('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Settings</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(page + '-page').classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (event && event.target && event.target.closest('.nav-item')) {
+                event.target.closest('.nav-item').classList.add('active');
+            }
+            
+            // Update page title
+            const pageTitles = {
+                'main': 'Duna VPN - Main',
+                'plans': 'Duna VPN - Plans',
+                'settings': 'Duna VPN - Settings',
+                'connect': 'Duna VPN - Connect',
+                'referral': 'Duna VPN - Referral Program',
+                'paymenthistory': 'Duna VPN - Payment History',
+                'topup': 'Duna VPN - Top Up',
+                'howtouse': 'Duna VPN - How to Use',
+                'loyalty': 'Duna VPN - Loyalty Program',
+                'about': 'Duna VPN - About Us',
+                'contact': 'Duna VPN - Contact Us',
+                'refund': 'Duna VPN - Refund Policy',
+                'privacy': 'Duna VPN - Privacy Policy',
+                'terms': 'Duna VPN - Terms of Use'
+            };
+            
+            document.title = pageTitles[page] || 'Duna VPN';
+        }
+        
+        function selectPlan(planCard) {
+            // Remove selection from all plans
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked plan
+            planCard.classList.add('selected');
+        }
+        
+        function toggleLanguage() {
+            const toggle = document.getElementById('languageToggle');
+            const switchElement = toggle.parentElement;
+            const enText = document.getElementById('languageText');
+            const ruText = document.getElementById('languageTextRu');
+            
+            if (switchElement.classList.contains('active')) {
+                switchElement.classList.remove('active');
+                enText.classList.add('active');
+                ruText.classList.remove('active');
+            } else {
+                switchElement.classList.add('active');
+                enText.classList.remove('active');
+                ruText.classList.add('active');
+            }
+        }
+        
+        function toggleTheme() {
+            const toggle = document.getElementById('themeToggle');
+            const switchElement = toggle.parentElement;
+            
+            if (switchElement.classList.contains('active')) {
+                switchElement.classList.remove('active');
+            } else {
+                switchElement.classList.add('active');
+            }
+        }
+        
+        function copySettings() {
+            const settings = `Server: vpn.duna.com\nPort: 1194\nProtocol: UDP\nUsername: user123`;
+            navigator.clipboard.writeText(settings).then(() => {
+                alert('Settings copied to clipboard!');
+            });
+        }
+        
+        function copyReferralLink() {
+            const link = 'https://t.me/duna_vpn_bot?start=ref123456';
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Referral link copied to clipboard!');
+            });
+        }
+        
+        function selectPaymentMethod(element, method) {
+            // Remove selection from all payment methods
+            document.querySelectorAll('.payment-method').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Add selection to clicked method
+            element.classList.add('selected');
+            
+            // Enable pay button
+            document.getElementById('payButton').disabled = false;
+        }
+        
+        function updatePayButton() {
+            const amountInput = document.getElementById('amountInput');
+            const payButton = document.getElementById('payButton');
+            const amount = amountInput.value;
+            
+            if (amount && amount > 0) {
+                payButton.textContent = `Pay $${amount}`;
+            } else {
+                payButton.textContent = 'Pay $10';
+            }
+        }
+        
+        function processPayment() {
+            const selectedMethod = document.querySelector('.payment-method.selected');
+            const amountInput = document.getElementById('amountInput');
+            const amount = amountInput.value;
+            
+            if (selectedMethod && amount && amount > 0) {
+                const methodName = selectedMethod.querySelector('.payment-name').textContent;
+                alert(`Processing payment of $${amount} via ${methodName}...`);
+                // Here you would implement actual payment processing
+                // For now, just show success and go back to main page
+                setTimeout(() => {
+                    alert(`Payment of $${amount} successful! Your balance has been updated.`);
+                    showPage('main');
+                }, 1000);
+            }
+        }
+        
+        function selectSubscription(element, plan) {
+            // Remove selection from all subscription options
+            document.querySelectorAll('.subscription-option').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            
+            // Here you would implement subscription selection logic
+            const duration = element.querySelector('.subscription-duration').textContent;
+            const price = element.querySelector('.subscription-price').textContent;
+            
+            // For demo purposes, show confirmation
+            setTimeout(() => {
+                alert(`Selected ${duration} subscription for ${price}. Redirecting to payment...`);
+                showPage('topup');
+            }, 500);
+        }
+    </script>
+</body>
+</html>
