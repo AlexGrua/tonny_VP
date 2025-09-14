@@ -11,12 +11,41 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary-color: #06b6d4;
+            --primary-hover: #0891b2;
+            --secondary-color: #64748b;
+            --background-color: #ffffff;
+            --text-color: var(--text-color);
+            --border-color: rgba(156, 163, 175, 0.6);
+            --card-background: #ffffff;
+            --header-background: #ffffff;
+            --input-background: var(--input-background);
+            --input-border: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #06b6d4;
+            --primary-hover: #0891b2;
+            --secondary-color: #94a3b8;
+            --background-color: #0f172a;
+            --text-color: #f1f5f9;
+            --border-color: rgba(148, 163, 184, 0.3);
+            --card-background: #1e293b;
+            --header-background: #1e293b;
+            --input-background: #334155;
+            --input-border: #475569;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
-            color: #1f2937;
+            background: var(--background-color);
+            color: var(--text-color);
             line-height: 1.5;
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         .container {
@@ -39,19 +68,19 @@
         .header h1 {
             font-size: 11px;
             font-weight: bold;
-            color: #111827;
+            color: var(--text-color);
             margin-bottom: 2px;
         }
         
         .header p {
-            color: #6b7280;
+            color: var(--secondary-color);
             font-size: 14px;
         }
         
         .user-avatar {
             width: 48px;
             height: 48px;
-            background: #14b8a6;
+            background: #06b6d4;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -75,12 +104,13 @@
         }
         
         .header-unified {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: var(--header-background);
+            box-shadow: 0 2px 8px var(--shadow-color);
             padding: 3px 16px;
             position: sticky;
             top: 0;
             z-index: 10;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .logo {
@@ -96,17 +126,18 @@
         }
         
         .card {
-            background: #ffffff;
+            background: var(--card-background);
             border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            border: 3px solid rgba(156, 163, 175, 0.6);
-            min-height: 80px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border: 3px solid var(--border-color);
+            min-height: 70px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .card::before {
@@ -137,7 +168,7 @@
         .balance-info h3 {
             font-size: 18px;
             font-weight: 600;
-            color: #111827;
+            color: var(--text-color);
             margin-bottom: 4px;
         }
         
@@ -160,22 +191,34 @@
         }
         
         .btn-outline {
-            border: 3px solid #06b6d4;
-            background: #ffffff;
-            color: #06b6d4;
+            border: 3px solid var(--primary-color);
+            background: var(--card-background);
+            color: var(--primary-color);
             border-radius: 12px;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         
         .btn-outline:hover {
-            background: #06b6d4;
+            background: var(--primary-color);
             color: white;
             transform: translateY(-1px);
         }
         
+        .btn:not(.btn-primary):not(.btn-outline) {
+            background: var(--input-background);
+            color: var(--secondary-color);
+            border: 3px solid var(--border-color);
+        }
+        
+        .btn:not(.btn-primary):not(.btn-outline):hover {
+            background: var(--border-color);
+            color: var(--text-color);
+            transform: translateY(-1px);
+        }
+        
         .btn-primary {
-            background: #06b6d4;
+            background: var(--primary-color);
             color: white;
             width: 100%;
             padding: 12px;
@@ -200,7 +243,7 @@
         }
         
         .btn-primary:hover {
-            background: #0891b2;
+            background: var(--primary-hover);
             transform: translateY(-2px);
         }
         
@@ -233,18 +276,18 @@
         .vpn-icon svg {
             width: 32px;
             height: 32px;
-            color: #6b7280;
+            color: var(--secondary-color);
         }
         
         .vpn-card h3 {
             font-size: 18px;
             font-weight: 600;
-            color: #111827;
+            color: var(--text-color);
             margin-bottom: 8px;
         }
         
         .vpn-card p {
-            color: #6b7280;
+            color: var(--secondary-color);
             margin-bottom: 16px;
             font-size: 14px;
         }
@@ -278,7 +321,7 @@
         .invite-icon svg {
             width: 24px;
             height: 24px;
-            color: #14b8a6;
+            color: #06b6d4;
         }
         
         .invite-info {
@@ -287,13 +330,13 @@
         
         .invite-info h3 {
             font-weight: 600;
-            color: #111827;
+            color: var(--text-color);
             margin-bottom: 4px;
         }
         
         .invite-info p {
             font-size: 14px;
-            color: #6b7280;
+            color: var(--secondary-color);
         }
         
         .stats-grid {
@@ -309,13 +352,13 @@
         .stat-number {
             font-size: 24px;
             font-weight: bold;
-            color: #14b8a6;
+            color: #06b6d4;
             margin-bottom: 4px;
         }
         
         .stat-label {
             font-size: 14px;
-            color: #6b7280;
+            color: var(--secondary-color);
         }
         
         .bottom-nav {
@@ -345,7 +388,7 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
-            color: #6b7280;
+            color: var(--secondary-color);
         }
         
         .nav-item.active {
@@ -387,7 +430,7 @@
         }
         
         .plan-card.selected {
-            border: 2px solid #14b8a6;
+            border: 2px solid #06b6d4;
             background: #f0fdfa;
         }
         
@@ -401,11 +444,11 @@
         .plan-name {
             font-size: 18px;
             font-weight: 600;
-            color: #111827;
+            color: var(--text-color);
         }
         
         .plan-badge {
-            background: #14b8a6;
+            background: #06b6d4;
             color: white;
             padding: 2px 8px;
             border-radius: 12px;
@@ -416,7 +459,7 @@
         .plan-price {
             font-size: 32px;
             font-weight: bold;
-            color: #14b8a6;
+            color: #06b6d4;
             margin-bottom: 12px;
         }
         
@@ -430,7 +473,7 @@
             gap: 8px;
             margin-bottom: 4px;
             font-size: 14px;
-            color: #6b7280;
+            color: var(--secondary-color);
         }
         
         .check-icon {
@@ -448,7 +491,7 @@
         }
         
         .settings-item:hover {
-            background: #f9fafb;
+            background: var(--input-background);
         }
         
         .settings-icon {
@@ -464,7 +507,7 @@
         .settings-icon svg {
             width: 24px;
             height: 24px;
-            color: #14b8a6;
+            color: #06b6d4;
         }
         
         .settings-info {
@@ -473,13 +516,13 @@
         
         .settings-info h3 {
             font-weight: 600;
-            color: #111827;
+            color: var(--text-color);
             margin-bottom: 4px;
         }
         
         .settings-info p {
             font-size: 14px;
-            color: #6b7280;
+            color: var(--secondary-color);
         }
         
         .arrow-icon {
@@ -501,7 +544,7 @@
         }
         
         .toggle-switch.active {
-            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
             box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
         }
         
@@ -531,8 +574,8 @@
             transition: all 0.3s ease;
             border-radius: 12px;
             margin-bottom: 6px;
-            background: #ffffff;
-            border: 1px solid rgba(156, 163, 175, 0.2);
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
         }
@@ -548,8 +591,8 @@
         }
         
         .settings-link:hover {
-            background: rgba(236, 254, 255, 0.8);
-            color: #06b6d4;
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--primary-color);
             transform: translateY(-2px);
         }
         
@@ -563,12 +606,12 @@
         .lang-text {
             font-size: 14px;
             font-weight: 600;
-            color: #6b7280;
+            color: var(--secondary-color);
             transition: color 0.3s;
         }
         
         .lang-text.active {
-            color: #14b8a6;
+            color: #06b6d4;
         }
         
         /* Theme Toggle */
@@ -584,10 +627,10 @@
             align-items: center;
             gap: 8px;
             padding: 12px 20px;
-            background: #ffffff;
-            border: 3px solid rgba(156, 163, 175, 0.4);
+            background: var(--card-background);
+            border: 3px solid var(--border-color);
             border-radius: 12px;
-            color: #6b7280;
+            color: var(--secondary-color);
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
@@ -596,8 +639,8 @@
         }
         
         .back-button:hover {
-            background: rgba(236, 254, 255, 0.8);
-            color: #06b6d4;
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--primary-color);
             transform: translateY(-1px);
         }
         
@@ -614,37 +657,37 @@
         /* Mobile color optimizations - unified with desktop */
         @media (max-width: 768px) {
             /* Переопределение inline стилей для мобильных */
-            [style*="color: #14b8a6"] {
+            [style*="color: #06b6d4"] {
                 color: #06b6d4 !important;
             }
             
-            [style*="color: #14b8a6;"] {
+            [style*="color: #06b6d4;"] {
                 color: #06b6d4 !important;
             }
             
             /* Усиленные контуры для мобильных */
             .card {
-                border: 4px solid rgba(156, 163, 175, 0.6) !important;
+                border: 4px solid rgba(156, 163, 175, 0.8) !important;
             }
             
             .btn {
-                border: 3px solid rgba(156, 163, 175, 0.5) !important;
+                border: 3px solid rgba(156, 163, 175, 0.7) !important;
             }
             
             .subscription-option {
-                border: 3px solid rgba(156, 163, 175, 0.5) !important;
+                border: 3px solid rgba(156, 163, 175, 0.7) !important;
             }
             
             .payment-method {
-                border: 3px solid rgba(156, 163, 175, 0.5) !important;
+                border: 3px solid rgba(156, 163, 175, 0.7) !important;
             }
             
             .settings-link {
-                border: 1px solid rgba(156, 163, 175, 0.3) !important;
+                border: 1px solid rgba(156, 163, 175, 0.5) !important;
             }
             
             .back-button {
-                border: 3px solid rgba(156, 163, 175, 0.5) !important;
+                border: 3px solid rgba(156, 163, 175, 0.7) !important;
             }
         }
         
@@ -699,13 +742,13 @@
         }
         
         .lang-btn.active {
-            background: #14b8a6;
+            background: #06b6d4;
             color: white;
         }
         
         .lang-btn:not(.active) {
-            border: 2px solid #14b8a6;
-            color: #14b8a6;
+            border: 2px solid #06b6d4;
+            color: #06b6d4;
             background: white;
         }
         
@@ -720,10 +763,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px;
-            border: 3px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #e5e7eb, #d1d5db) border-box;
-            background-color: #ffffff;
+            border: 3px solid var(--border-color);
+            background: var(--card-background);
             border-radius: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -742,16 +783,14 @@
         }
         
         .payment-method:hover {
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #06b6d4, #0891b2) border-box;
-            background-color: rgba(236, 254, 255, 0.8);
+            border-color: var(--primary-color);
+            background-color: rgba(6, 182, 212, 0.1);
             transform: translateY(-2px);
         }
         
         .payment-method.selected {
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #06b6d4, #0891b2) border-box;
-            background-color: rgba(236, 254, 255, 0.9);
+            border-color: var(--primary-color);
+            background-color: rgba(6, 182, 212, 0.15);
         }
         
         .payment-info {
@@ -762,7 +801,7 @@
         
         .payment-name {
             font-weight: 500;
-            color: #111827;
+            color: var(--text-color);
             font-size: 16px;
         }
         
@@ -782,8 +821,8 @@
         }
         
         .payment-method.selected .payment-radio {
-            border-color: #14b8a6;
-            background: #14b8a6;
+            border-color: #06b6d4;
+            background: #06b6d4;
         }
         
         .payment-method.selected .payment-radio::after {
@@ -799,7 +838,7 @@
         }
         
         .current-plan-card {
-            background: #f9fafb;
+            background: var(--input-background);
             border: 1px solid #e5e7eb;
         }
         
@@ -814,10 +853,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px;
-            border: 3px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #e5e7eb, #d1d5db) border-box;
-            background-color: #ffffff;
+            border: 3px solid var(--border-color);
+            background: var(--card-background);
             border-radius: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -836,22 +873,19 @@
         }
         
         .subscription-option:hover {
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #06b6d4, #0891b2) border-box;
-            background-color: rgba(236, 254, 255, 0.8);
+            border-color: var(--primary-color);
+            background-color: rgba(6, 182, 212, 0.1);
             transform: translateY(-2px);
         }
         
         .subscription-option.selected {
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #06b6d4, #0891b2) border-box;
-            background-color: rgba(236, 254, 255, 0.9);
+            border-color: var(--primary-color);
+            background-color: rgba(6, 182, 212, 0.15);
         }
         
         .subscription-option.popular {
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #06b6d4, #0891b2) border-box;
-            background-color: rgba(236, 254, 255, 0.8);
+            border-color: var(--primary-color);
+            background-color: rgba(6, 182, 212, 0.1);
         }
         
         .subscription-info {
@@ -863,13 +897,13 @@
         
         .subscription-duration {
             font-weight: 500;
-            color: #111827;
+            color: var(--text-color);
             font-size: 16px;
         }
         
         .subscription-price {
             font-weight: bold;
-            color: #14b8a6;
+            color: #06b6d4;
             font-size: 18px;
         }
         
@@ -878,7 +912,7 @@
             top: -8px;
             left: 50%;
             transform: translateX(-50%);
-            background: #14b8a6;
+            background: #06b6d4;
             color: white;
             padding: 4px 12px;
             border-radius: 12px;
@@ -893,18 +927,6 @@
         <div id="main-page" class="page active">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -913,7 +935,7 @@
                 <!-- Current Balance Card -->
                 <div class="card balance-card-new">
                     <div class="balance-info-new">
-                            <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 6px;">Current Balance</h3>
+                            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-color); margin-bottom: 6px;">Current Balance</h3>
                         <div class="balance-amount">$42.50</div>
                     </div>
                     <button class="btn btn-primary" style="margin-top: 16px;" onclick="showPage('topup')">Charge Balance</button>
@@ -922,7 +944,7 @@
 
                 <!-- VPN Connection Card -->
                 <div class="card vpn-card-new">
-                    <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 16px; text-align: center;">VPN Services</h3>
+                    <h3 style="font-size: 18px; font-weight: 700; color: var(--text-color); margin-bottom: 16px; text-align: center;">VPN Services</h3>
                     <button class="btn btn-primary" style="margin-bottom: 12px;" onclick="showPage('plans')">Buy VPN</button>
                     <button class="btn btn-outline" onclick="showPage('connect')">Connect VPN</button>
                 </div>
@@ -930,8 +952,8 @@
                 <!-- Invite Friend Card -->
                 <div class="card invite-card-new">
                     <div class="invite-info-new">
-                        <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 6px;">Invite Friends</h3>
-                        <p style="color: #6b7280; font-size: 16px;">Earn up to 25% from every friend</p>
+                        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-color); margin-bottom: 6px;">Invite Friends</h3>
+                        <p style="color: var(--secondary-color); font-size: 16px;">Earn up to 25% from every friend</p>
                     </div>
                     <button class="btn btn-outline" style="margin-top: 16px;" onclick="showPage('referral')">Invite</button>
                 </div>
@@ -943,35 +965,23 @@
         <div id="plans-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
 
             <div class="content">
                 <!-- Current Balance & Plan -->
-                <div class="card" style="text-align: center; padding: 12px; min-height: 60px;">
-                    <div style="font-size: 14px; font-weight: bold; color: #111827; margin-bottom: 2px;">Current Balance</div>
-                    <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 8px;">$42.50</div>
+                <div class="card" style="text-align: center; padding: 8px; min-height: 50px;">
+                    <div style="font-size: 12px; font-weight: bold; color: var(--text-color); margin-bottom: 1px;">Current Balance</div>
+                    <div style="font-size: 20px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">$42.50</div>
                     
-                    <div style="font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 2px;">Current Plan Valid Until:</div>
-                    <div style="font-size: 16px; font-weight: bold; color: #14b8a6;">27.10.2025</div>
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-color); margin-bottom: 1px;">Current Plan Valid Until:</div>
+                    <div style="font-size: 14px; font-weight: bold; color: #06b6d4;">27.10.2025</div>
                 </div>
 
                 <!-- Subscription Options -->
-                <div class="card" style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(13, 148, 136, 0.05) 100%); border: 2px solid rgba(20, 184, 166, 0.3); box-shadow: 0 8px 32px rgba(20, 184, 166, 0.2);">
-                    <h3 style="font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 20px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Choose your Plan</h3>
+                <div class="card">
+                    <h3 style="font-size: 28px; font-weight: 700; color: var(--text-color); margin-bottom: 20px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Choose your Plan</h3>
                     
                     <div class="subscription-options">
                         <!-- 1 Month -->
@@ -1003,8 +1013,7 @@
 
                 <!-- Free Trial -->
                 <div class="card" style="text-align: center;">
-                    <button class="btn btn-outline" style="border-color: #f59e0b; color: #f59e0b; background: white; margin-bottom: 8px;" onclick="showPage('connect')">2 days Free Trial</button>
-                    <div style="color: #6b7280; font-size: 12px;">New Users only</div>
+                    <button class="btn" onclick="showPage('connect')">2 days Free Trial</button>
                 </div>
             </div>
         </div>
@@ -1013,29 +1022,17 @@
         <div id="settings-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
 
             <div class="content">
                 <!-- Settings Controls -->
-                <div class="card" style="padding: 12px; min-height: 60px;">
+                <div class="card" style="padding: 8px; min-height: 50px;">
                     <!-- Language Setting -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f3f4f6;">
-                        <div style="font-size: 16px; font-weight: bold; color: #111827;">Language</div>
-                        <div class="language-toggle" onclick="toggleLanguage()">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--border-color);">
+                        <div style="font-size: 14px; font-weight: bold; color: var(--text-color);">Language</div>
+                        <div class="language-toggle" onclick="toggleLanguage()" style="min-width: 60px; justify-content: center;">
                             <span class="lang-text" id="languageText">En</span>
                             <div class="toggle-switch">
                                 <div class="toggle-slider" id="languageToggle"></div>
@@ -1045,8 +1042,8 @@
                     </div>
                     
                     <!-- Theme Setting -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                        <div style="font-size: 16px; font-weight: bold; color: #111827;">Theme</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0;">
+                        <div style="font-size: 14px; font-weight: bold; color: var(--text-color);">Theme</div>
                         <div class="theme-toggle" onclick="toggleTheme()">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #f59e0b;">
                                 <circle cx="12" cy="12" r="5" fill="currentColor"/>
@@ -1064,31 +1061,31 @@
 
                 <!-- Navigation Links -->
                 <div style="margin-top: 16px;">
-                    <div class="settings-link" onclick="showPage('referral')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('referral')" style="color: var(--text-color);">
                         Referral Program
                     </div>
-                    <div class="settings-link" onclick="showPage('paymenthistory')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('paymenthistory')" style="color: var(--text-color);">
                         Payment History
                     </div>
-                    <div class="settings-link" onclick="showPage('howtouse')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('howtouse')" style="color: var(--text-color);">
                         How to Use
                     </div>
-                    <div class="settings-link" onclick="showPage('loyalty')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('loyalty')" style="color: var(--text-color);">
                         Loyalty Program
                     </div>
-                    <div class="settings-link" onclick="showPage('about')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('about')" style="color: var(--text-color);">
                         About Us
                     </div>
-                    <div class="settings-link" onclick="showPage('contact')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('contact')" style="color: var(--text-color);">
                         Contact Us
                     </div>
-                    <div class="settings-link" onclick="showPage('refund')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('refund')" style="color: var(--text-color);">
                         Refund Policy
                     </div>
-                    <div class="settings-link" onclick="showPage('privacy')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('privacy')" style="color: var(--text-color);">
                         Privacy Policy
                     </div>
-                    <div class="settings-link" onclick="showPage('terms')" style="color: #111827;">
+                    <div class="settings-link" onclick="showPage('terms')" style="color: var(--text-color);">
                         Terms of Use
                     </div>
                 </div>
@@ -1099,18 +1096,6 @@
         <div id="connect-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1119,38 +1104,32 @@
                 <!-- VPN Status -->
                 <div class="card">
                     <div style="text-align: center;">
-                        <div class="vpn-icon" style="background: #fef3c7; margin-bottom: 16px;">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #f59e0b;">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                            </svg>
-                        </div>
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">VPN Disconnected</h3>
-                        <p style="color: #6b7280; margin-bottom: 16px;">Click the link below to connect via HAPP</p>
+                        <p style="color: var(--secondary-color); margin-bottom: 16px;">Click the link below to connect via HAPP</p>
                         <button class="btn btn-primary" onclick="window.open('https://happ.app', '_blank')">Open HAPP</button>
                     </div>
                 </div>
 
                 <!-- Manual Settings -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Manual Settings</h3>
-                    <p style="color: #6b7280; margin-bottom: 16px; font-size: 14px;">Use these settings to manually configure VPN in any compatible app:</p>
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Manual Settings</h3>
+                    <p style="color: var(--secondary-color); margin-bottom: 16px; font-size: 14px;">Use these settings to manually configure VPN in any compatible app:</p>
                     
-                    <div style="background: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                    <div style="background: var(--input-background); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
                         <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Server Address:</label>
-                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">vpn.duna.com</div>
+                            <label style="font-weight: 500; color: var(--text-color); font-size: 14px;">Server Address:</label>
+                            <div style="background: var(--card-background); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px; color: var(--text-color);">vpn.duna.com</div>
                         </div>
                         <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Port:</label>
-                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">1194</div>
+                            <label style="font-weight: 500; color: var(--text-color); font-size: 14px;">Port:</label>
+                            <div style="background: var(--card-background); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px; color: var(--text-color);">1194</div>
                         </div>
                         <div style="margin-bottom: 12px;">
-                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Protocol:</label>
-                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">UDP</div>
+                            <label style="font-weight: 500; color: var(--text-color); font-size: 14px;">Protocol:</label>
+                            <div style="background: var(--card-background); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px; color: var(--text-color);">UDP</div>
                         </div>
                         <div>
-                            <label style="font-weight: 500; color: #374151; font-size: 14px;">Username:</label>
-                            <div style="background: white; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px;">user123</div>
+                            <label style="font-weight: 500; color: var(--text-color); font-size: 14px;">Username:</label>
+                            <div style="background: var(--card-background); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 14px; margin-top: 4px; color: var(--text-color);">user123</div>
                         </div>
                     </div>
                     
@@ -1159,15 +1138,15 @@
 
                 <!-- Connection Info -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Connection Info</h3>
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Connection Info</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                         <div style="text-align: center;">
-                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">0ms</div>
-                            <div style="font-size: 14px; color: #6b7280;">Ping</div>
+                            <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">0ms</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Ping</div>
                         </div>
                         <div style="text-align: center;">
-                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">0 MB</div>
-                            <div style="font-size: 14px; color: #6b7280;">Data Used</div>
+                            <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">0 MB</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Data Used</div>
                         </div>
                     </div>
                 </div>
@@ -1178,18 +1157,6 @@
         <div id="referral-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1205,8 +1172,8 @@
                 
                 <!-- Referral Link -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Your Referral Link</h3>
-                    <div style="background: #f9fafb; padding: 12px; border-radius: 8px; margin-bottom: 16px; font-family: monospace; font-size: 14px; word-break: break-all;">
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Your Referral Link</h3>
+                    <div style="background: var(--input-background); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-family: monospace; font-size: 14px; word-break: break-all;">
                         https://t.me/duna_vpn_bot?start=ref123456
                     </div>
                     <button class="btn btn-primary" style="width: 100%;" onclick="copyReferralLink()">Copy Link</button>
@@ -1214,15 +1181,15 @@
 
                 <!-- Referral Stats -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Your Statistics</h3>
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Your Statistics</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                         <div style="text-align: center;">
-                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">12</div>
-                            <div style="font-size: 14px; color: #6b7280;">Total Referrals</div>
+                            <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">12</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Total Referrals</div>
                         </div>
                         <div style="text-align: center;">
-                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">$25.50</div>
-                            <div style="font-size: 14px; color: #6b7280;">Total Earned</div>
+                            <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">$25.50</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Total Earned</div>
                         </div>
                     </div>
                 </div>
@@ -1231,11 +1198,11 @@
                 <div class="card">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 4px;">Available for Withdraw</h3>
-                            <p style="color: #6b7280; font-size: 14px;">Cooldown: 7 days</p>
+                            <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;">Available for Withdraw</h3>
+                            <p style="color: var(--secondary-color); font-size: 14px;">Cooldown: 7 days</p>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 24px; font-weight: bold; color: #14b8a6; margin-bottom: 4px;">$15.00</div>
+                            <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">$15.00</div>
                             <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;">Withdraw</button>
                         </div>
                     </div>
@@ -1247,18 +1214,6 @@
         <div id="topup-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1266,20 +1221,20 @@
             <div class="content">
                 <!-- Payment Amount -->
                 <div class="card" style="text-align: center;">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Enter amount to pay</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Enter amount to pay</h2>
                     
                     <!-- Amount Input -->
                     <div style="position: relative; margin-bottom: 24px;">
                         <input type="number" id="amountInput" value="10" min="1" max="1000" 
-                               style="width: 100%; padding: 16px 60px 16px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 24px; font-weight: bold; color: #14b8a6; background: #f9fafb; text-align: center;"
+                               style="width: 100%; padding: 16px 60px 16px 16px; border: 2px solid var(--input-border); border-radius: 12px; font-size: 24px; font-weight: bold; color: var(--primary-color); background: var(--input-background); text-align: center;"
                                oninput="updatePayButton()">
-                        <div style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #6b7280; font-size: 18px; font-weight: 600;">USD</div>
+                        <div style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--secondary-color); font-size: 18px; font-weight: 600;">USD</div>
                     </div>
                 </div>
 
                 <!-- Payment Methods -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Select Payment Method</h3>
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Select Payment Method</h3>
                     
                     <div class="payment-methods">
                         <div class="payment-method" onclick="selectPaymentMethod(this, 'balance')">
@@ -1333,18 +1288,6 @@
         <div id="paymenthistory-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1360,52 +1303,52 @@
                 
                 <!-- Payment History -->
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Payment History</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Payment History</h2>
                     
                     <!-- Transaction Item -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-color);">
                         <div>
-                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Monthly Plan</div>
-                            <div style="font-size: 14px; color: #6b7280;">Dec 15, 2024</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;">Monthly Plan</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Dec 15, 2024</div>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$9.99</div>
+                            <div style="font-size: 16px; font-weight: 600; color: #06b6d4;">+$9.99</div>
                             <div style="font-size: 12px; color: #10b981;">Completed</div>
                         </div>
                     </div>
                     
                     <!-- Transaction Item -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-color);">
                         <div>
-                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Top Up Balance</div>
-                            <div style="font-size: 14px; color: #6b7280;">Dec 10, 2024</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;">Top Up Balance</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Dec 10, 2024</div>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$25.00</div>
+                            <div style="font-size: 16px; font-weight: 600; color: #06b6d4;">+$25.00</div>
                             <div style="font-size: 12px; color: #10b981;">Completed</div>
                         </div>
                     </div>
                     
                     <!-- Transaction Item -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-color);">
                         <div>
-                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Annual Plan</div>
-                            <div style="font-size: 14px; color: #6b7280;">Nov 20, 2024</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;">Annual Plan</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Nov 20, 2024</div>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$99.99</div>
+                            <div style="font-size: 16px; font-weight: 600; color: #06b6d4;">+$99.99</div>
                             <div style="font-size: 12px; color: #10b981;">Completed</div>
                         </div>
                     </div>
                     
                     <!-- Transaction Item -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f3f4f6;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-color);">
                         <div>
-                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Referral Bonus</div>
-                            <div style="font-size: 14px; color: #6b7280;">Nov 15, 2024</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;">Referral Bonus</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Nov 15, 2024</div>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">+$2.50</div>
+                            <div style="font-size: 16px; font-weight: 600; color: #06b6d4;">+$2.50</div>
                             <div style="font-size: 12px; color: #10b981;">Completed</div>
                         </div>
                     </div>
@@ -1413,11 +1356,11 @@
                     <!-- Transaction Item -->
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0;">
                         <div>
-                            <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 4px;">Free Trial</div>
-                            <div style="font-size: 14px; color: #6b7280;">Nov 10, 2024</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;">Free Trial</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);">Nov 10, 2024</div>
                         </div>
                         <div style="text-align: right;">
-                            <div style="font-size: 16px; font-weight: 600; color: #14b8a6;">$0.00</div>
+                            <div style="font-size: 16px; font-weight: 600; color: #06b6d4;">$0.00</div>
                             <div style="font-size: 12px; color: #10b981;">Completed</div>
                         </div>
                     </div>
@@ -1425,21 +1368,21 @@
                 
                 <!-- Summary Card -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Summary</h3>
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Summary</h3>
                     
                     <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-                        <span style="color: #6b7280;">Total Deposits:</span>
-                        <span style="font-weight: 600; color: #111827;">$134.98</span>
+                        <span style="color: var(--secondary-color);">Total Deposits:</span>
+                        <span style="font-weight: 600; color: var(--text-color);">$134.98</span>
                     </div>
                     
                     <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-                        <span style="color: #6b7280;">Total Spent:</span>
-                        <span style="font-weight: 600; color: #111827;">$92.48</span>
+                        <span style="color: var(--secondary-color);">Total Spent:</span>
+                        <span style="font-weight: 600; color: var(--text-color);">$92.48</span>
                     </div>
                     
                     <div style="display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px solid #f3f4f6;">
-                        <span style="color: #6b7280; font-weight: 600;">Current Balance:</span>
-                        <span style="font-weight: 600; color: #14b8a6; font-size: 18px;">$42.50</span>
+                        <span style="color: var(--secondary-color); font-weight: 600;">Current Balance:</span>
+                        <span style="font-weight: 600; color: #06b6d4; font-size: 18px;">$42.50</span>
                     </div>
                 </div>
             </div>
@@ -1449,18 +1392,6 @@
         <div id="howtouse-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1475,26 +1406,26 @@
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Getting Started with Tonny VPN</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Getting Started with Tonny VPN</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">1. Purchase a Plan</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Choose from our affordable VPN plans and make a payment using your preferred method.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">1. Purchase a Plan</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Choose from our affordable VPN plans and make a payment using your preferred method.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">2. Connect via HAPP</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Use the HAPP app for easy one-click VPN connection. Download from your app store.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">2. Connect via HAPP</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Use the HAPP app for easy one-click VPN connection. Download from your app store.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">3. Manual Configuration</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">For advanced users, configure VPN manually using our server details in any compatible app.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">3. Manual Configuration</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">For advanced users, configure VPN manually using our server details in any compatible app.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">4. Enjoy Secure Browsing</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Your internet traffic is now encrypted and your location is protected.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">4. Enjoy Secure Browsing</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Your internet traffic is now encrypted and your location is protected.</p>
                     </div>
                 </div>
             </div>
@@ -1504,18 +1435,6 @@
         <div id="loyalty-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1530,26 +1449,26 @@
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Earn Rewards with Tonny VPN</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Earn Rewards with Tonny VPN</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">🎯 Referral Rewards</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Earn up to 25% commission for every friend you refer to Tonny VPN.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">🎯 Referral Rewards</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Earn up to 25% commission for every friend you refer to Tonny VPN.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">💎 Long-term Discounts</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Get special discounts for annual subscriptions and loyal customers.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">💎 Long-term Discounts</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Get special discounts for annual subscriptions and loyal customers.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">⭐ Premium Features</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Unlock premium servers and priority support as a loyal member.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">⭐ Premium Features</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Unlock premium servers and priority support as a loyal member.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">🎁 Exclusive Bonuses</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Receive bonus data and extended validity periods for active users.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">🎁 Exclusive Bonuses</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Receive bonus data and extended validity periods for active users.</p>
                     </div>
                 </div>
             </div>
@@ -1559,18 +1478,6 @@
         <div id="about-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1585,16 +1492,16 @@
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">About Tonny VPN</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">About Tonny VPN</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <p style="color: #6b7280; line-height: 1.6; margin-bottom: 16px;">Tonny VPN is a leading provider of secure and reliable VPN services, committed to protecting your online privacy and freedom.</p>
+                        <p style="color: var(--secondary-color); line-height: 1.6; margin-bottom: 16px;">Tonny VPN is a leading provider of secure and reliable VPN services, committed to protecting your online privacy and freedom.</p>
                         
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Our Mission</h3>
-                        <p style="color: #6b7280; line-height: 1.6; margin-bottom: 16px;">To provide fast, secure, and affordable VPN services that protect your digital privacy and allow unrestricted access to the internet.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Our Mission</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6; margin-bottom: 16px;">To provide fast, secure, and affordable VPN services that protect your digital privacy and allow unrestricted access to the internet.</p>
                         
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Why Choose Tonny VPN?</h3>
-                        <ul style="color: #6b7280; line-height: 1.6; padding-left: 20px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Why Choose Tonny VPN?</h3>
+                        <ul style="color: var(--secondary-color); line-height: 1.6; padding-left: 20px;">
                             <li>Military-grade encryption</li>
                             <li>No-logs policy</li>
                             <li>Fast global servers</li>
@@ -1610,18 +1517,6 @@
         <div id="contact-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1636,26 +1531,26 @@
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Get in Touch</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Get in Touch</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">📧 Email Support</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">support@dunavpn.com</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">📧 Email Support</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">support@dunavpn.com</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">💬 Telegram</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">@DunaVPN_Support</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">💬 Telegram</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">@DunaVPN_Support</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">🕒 Support Hours</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">24/7 Customer Support</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">🕒 Support Hours</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">24/7 Customer Support</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">⚡ Response Time</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Usually within 1-2 hours</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">⚡ Response Time</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Usually within 1-2 hours</p>
                     </div>
                 </div>
             </div>
@@ -1665,18 +1560,6 @@
         <div id="refund-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1691,26 +1574,26 @@
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Refund Policy</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Refund Policy</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">30-Day Money-Back Guarantee</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">We offer a full refund within 30 days of purchase if you're not satisfied with our service.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">30-Day Money-Back Guarantee</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">We offer a full refund within 30 days of purchase if you're not satisfied with our service.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">How to Request a Refund</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Contact our support team via email or Telegram with your order details and reason for refund.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">How to Request a Refund</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Contact our support team via email or Telegram with your order details and reason for refund.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Processing Time</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Refunds are processed within 5-7 business days to your original payment method.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Processing Time</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Refunds are processed within 5-7 business days to your original payment method.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Exceptions</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Refunds are not available for accounts that violate our terms of service or abuse our network.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Exceptions</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Refunds are not available for accounts that violate our terms of service or abuse our network.</p>
                     </div>
                 </div>
             </div>
@@ -1720,18 +1603,6 @@
         <div id="privacy-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1746,26 +1617,26 @@
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Privacy Policy</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Privacy Policy</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">No-Logs Policy</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">We do not log, store, or monitor your online activities, browsing history, or personal data.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">No-Logs Policy</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">We do not log, store, or monitor your online activities, browsing history, or personal data.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Data Collection</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">We only collect minimal information necessary for account management and payment processing.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Data Collection</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">We only collect minimal information necessary for account management and payment processing.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Data Protection</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">All data is encrypted and protected using industry-standard security measures.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Data Protection</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">All data is encrypted and protected using industry-standard security measures.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Third-Party Sharing</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">We never sell, rent, or share your personal information with third parties.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Third-Party Sharing</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">We never sell, rent, or share your personal information with third parties.</p>
                     </div>
                 </div>
             </div>
@@ -1775,18 +1646,6 @@
         <div id="terms-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <div class="logo">
-                        <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="40" height="40" rx="8" fill="url(#logoGradient)"/>
-                            <path d="M20 8L28 12V20C28 26 20 32 20 32S12 26 12 20V12L20 8Z" fill="white" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <h1>Tonny VPN</h1>
                 </div>
             </div>
@@ -1801,26 +1660,26 @@
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 16px;">Terms of Use</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Terms of Use</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Acceptable Use</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Use our service responsibly and in accordance with local laws and regulations.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Acceptable Use</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Use our service responsibly and in accordance with local laws and regulations.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Prohibited Activities</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">Illegal activities, copyright infringement, spam, and network abuse are strictly prohibited.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Prohibited Activities</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Illegal activities, copyright infringement, spam, and network abuse are strictly prohibited.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Service Availability</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">We strive for 99.9% uptime but cannot guarantee uninterrupted service.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Service Availability</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">We strive for 99.9% uptime but cannot guarantee uninterrupted service.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Account Termination</h3>
-                        <p style="color: #6b7280; line-height: 1.6;">We reserve the right to terminate accounts that violate these terms.</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Account Termination</h3>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">We reserve the right to terminate accounts that violate these terms.</p>
                     </div>
                 </div>
             </div>
@@ -1917,11 +1776,34 @@
         function toggleTheme() {
             const toggle = document.getElementById('themeToggle');
             const switchElement = toggle.parentElement;
+            const body = document.body;
             
             if (switchElement.classList.contains('active')) {
+                // Switch to light theme
                 switchElement.classList.remove('active');
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
             } else {
+                // Switch to dark theme
                 switchElement.classList.add('active');
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Initialize theme on page load
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const body = document.body;
+            const toggle = document.getElementById('themeToggle');
+            const switchElement = toggle.parentElement;
+            
+            body.setAttribute('data-theme', savedTheme);
+            
+            if (savedTheme === 'dark') {
+                switchElement.classList.add('active');
+            } else {
+                switchElement.classList.remove('active');
             }
         }
         
@@ -2000,6 +1882,11 @@
                 showPage('topup');
             }, 500);
         }
+        
+        // Initialize theme when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+        });
     </script>
 </body>
 </html>
