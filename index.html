@@ -19,6 +19,13 @@
             min-height: 100vh;
         }
         
+        /* Более яркий фон для мобильных */
+        @media (max-width: 768px) {
+            body {
+                background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%) !important;
+            }
+        }
+        
         .container {
             max-width: 400px;
             margin: 0 auto;
@@ -619,6 +626,82 @@
         .language-switch {
             display: flex;
             gap: 8px;
+        }
+        
+        /* Mobile color optimizations */
+        @media (max-width: 768px) {
+            /* Более яркие и контрастные цвета для мобильных */
+            .btn-primary {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%) !important;
+                box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4) !important;
+            }
+            
+            /* Переопределение inline стилей для мобильных */
+            [style*="color: #14b8a6"] {
+                color: #0ea5e9 !important;
+            }
+            
+            [style*="color: #14b8a6;"] {
+                color: #0ea5e9 !important;
+            }
+            
+            .btn-primary:hover {
+                background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #075985 100%) !important;
+                box-shadow: 0 8px 25px rgba(14, 165, 233, 0.5) !important;
+            }
+            
+            .btn-outline {
+                border: 2px solid transparent !important;
+                background: linear-gradient(white, white) padding-box,
+                            linear-gradient(135deg, #0ea5e9, #0284c7, #3b82f6) border-box !important;
+                color: #0284c7 !important;
+            }
+            
+            .btn-outline:hover {
+                background: linear-gradient(white, white) padding-box,
+                            linear-gradient(135deg, #0284c7, #0369a1, #1d4ed8) border-box !important;
+                color: #0369a1 !important;
+            }
+            
+            .balance-amount {
+                color: #0ea5e9 !important;
+            }
+            
+            .nav-item.active {
+                color: #0ea5e9 !important;
+                background: rgba(239, 246, 255, 0.9) !important;
+            }
+            
+            .subscription-option.popular {
+                background: linear-gradient(white, white) padding-box,
+                            linear-gradient(135deg, #0ea5e9, #0284c7) border-box !important;
+                background-color: rgba(239, 246, 255, 0.9) !important;
+            }
+            
+            .payment-method.selected {
+                background: linear-gradient(white, white) padding-box,
+                            linear-gradient(135deg, #0ea5e9, #0284c7) border-box !important;
+                background-color: rgba(239, 246, 255, 0.9) !important;
+            }
+            
+            .back-button:hover {
+                background: rgba(239, 246, 255, 0.9) !important;
+                color: #0284c7 !important;
+            }
+            
+            .settings-link:hover {
+                background: rgba(239, 246, 255, 0.9) !important;
+                color: #0284c7 !important;
+            }
+            
+            /* Усиленные тени для мобильных */
+            .card {
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+            }
+            
+            .btn {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            }
         }
         
         /* Mobile optimizations for very small screens */
