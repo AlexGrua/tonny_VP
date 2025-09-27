@@ -690,6 +690,176 @@
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
+            
+            /* Уменьшение высоты блоков на главной странице на 10% */
+            .card {
+                min-height: 90px !important; /* уменьшено с ~100px */
+                padding: 14px !important; /* уменьшено с ~16px */
+            }
+            
+            .balance-amount {
+                font-size: 32px !important; /* уменьшено с ~36px */
+            }
+            
+            .card h3 {
+                font-size: 22px !important; /* уменьшено с ~24px */
+                margin-bottom: 7px !important; /* уменьшено с ~8px */
+            }
+            
+            .card p {
+                font-size: 16px !important; /* уменьшено с ~18px */
+            }
+            
+            .btn {
+                padding: 10px 16px !important; /* уменьшено с ~12px 18px */
+                font-size: 14px !important; /* уменьшено с ~16px */
+            }
+            
+            /* Планы страница - компактность для мобильной версии */
+            #plans-page .card {
+                padding: 8px !important;
+                min-height: 40px !important;
+                margin-bottom: 8px !important;
+            }
+            
+            #plans-page .card h3 {
+                font-size: 16px !important;
+                margin-bottom: 6px !important;
+            }
+            
+            #plans-page .card p {
+                font-size: 12px !important;
+                margin-bottom: 4px !important;
+            }
+            
+            #plans-page .btn {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+                margin-bottom: 4px !important;
+            }
+            
+            /* Первый блок с балансом - значительно компактнее */
+            #plans-page .card:first-child {
+                padding: 6px !important;
+                min-height: 30px !important;
+            }
+            
+            #plans-page .card:first-child div {
+                font-size: 14px !important;
+                margin-bottom: 2px !important;
+            }
+            
+            #plans-page .card:first-child div[style*="font-size: 16px"] {
+                font-size: 14px !important;
+            }
+            
+            #plans-page .card:first-child div[style*="font-size: 28px"] {
+                font-size: 20px !important;
+            }
+            
+            #plans-page .card:first-child div[style*="font-size: 18px"] {
+                font-size: 16px !important;
+            }
+            
+            /* Планы подписки - компактнее */
+            .subscription-option {
+                min-height: 80px !important;
+                padding: 8px !important;
+            }
+            
+            .subscription-duration {
+                font-size: 14px !important;
+            }
+            
+            .subscription-price {
+                font-size: 18px !important;
+            }
+            
+            /* Free Trial блок - компактнее */
+            #plans-page .card:last-child {
+                padding: 6px !important;
+                min-height: 30px !important;
+            }
+            
+            /* Страница оплаты - улучшения для мобильной версии */
+            #topup-page .card {
+                padding: 8px !important;
+                min-height: 40px !important;
+                margin-bottom: 12px !important; /* увеличили расстояние */
+            }
+            
+            #topup-page .card h3 {
+                font-size: 16px !important;
+                margin-bottom: 8px !important;
+                text-align: center !important;
+                font-weight: 600 !important;
+            }
+            
+            #topup-page .card h2 {
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+            }
+            
+            #topup-page .btn {
+                padding: 12px 16px !important; /* одинаковый размер */
+                font-size: 14px !important;
+                min-height: 44px !important; /* фиксированная высота */
+                margin-bottom: 8px !important; /* расстояние между кнопками */
+            }
+            
+            /* Улучшенный radio button */
+            .payment-radio {
+                width: 20px !important;
+                height: 20px !important;
+                border: 2px solid var(--primary-color) !important;
+                border-radius: 50% !important;
+                background: transparent !important;
+                position: relative !important;
+            }
+            
+            .payment-radio::after {
+                content: '' !important;
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                width: 8px !important;
+                height: 8px !important;
+                border-radius: 50% !important;
+                background: var(--primary-color) !important;
+                opacity: 0 !important;
+                transition: opacity 0.2s !important;
+            }
+            
+            .payment-method.selected .payment-radio::after {
+                opacity: 1 !important;
+            }
+            
+            /* Уменьшаем размер надписи "Текущий баланс: $42.50" */
+            .payment-balance {
+                font-size: 12px !important;
+                font-weight: 500 !important;
+            }
+            
+            /* Одинаковая высота для всех payment method */
+            .payment-method {
+                min-height: 50px !important;
+                padding: 8px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+            }
+            
+            .payment-name {
+                font-size: 14px !important;
+            }
+            
+            /* Центрирование и увеличение размера "Выберите способ оплаты" */
+            #topup-page .card h3 {
+                text-align: center !important;
+                font-size: 16px !important;
+                font-weight: 600 !important;
+            }
         }
         
         /* Tablet: 768px - 1023px */
@@ -2244,7 +2414,7 @@
                     'buyVpn': 'Buy VPN',
                     'connectVpn': 'Connect VPN',
                     'inviteFriends': 'Invite Friends',
-                    'earnUpTo': 'Earn up to 25% from every friend',
+                    'earnUpTo': 'Earn up to 25% from every invite',
                     'invite': 'Invite',
                     
                     // Plans Page
@@ -2521,6 +2691,9 @@
                     element.textContent = texts[key];
                 }
             });
+            
+            // Обновляем кнопку оплаты с учетом текущей суммы
+            updatePayButton();
         }
         
         function toggleTheme() {
@@ -2610,10 +2783,21 @@
             const payButton = document.getElementById('payButton');
             const amount = amountInput.value;
             
+            // Получаем текущий язык
+            const currentLang = localStorage.getItem('language') || 'en';
+            
             if (amount && amount > 0) {
-                payButton.textContent = `Pay $${amount}`;
+                if (currentLang === 'ru') {
+                    payButton.textContent = `Оплатить $${amount}`;
+                } else {
+                    payButton.textContent = `Pay $${amount}`;
+                }
             } else {
-                payButton.textContent = 'Pay $10';
+                if (currentLang === 'ru') {
+                    payButton.textContent = 'Оплатить $10';
+                } else {
+                    payButton.textContent = 'Pay $10';
+                }
             }
         }
         
