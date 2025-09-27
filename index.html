@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tonny VPN - Main</title>
+    <title>Sinus VPN - Main</title>
     <style>
         * {
             margin: 0;
@@ -23,6 +23,17 @@
             --input-background: var(--input-background);
             --input-border: #e5e7eb;
             --shadow-color: rgba(0, 0, 0, 0.1);
+            
+            /* Responsive container system */
+            --container-max: 1200px;
+            --container-pad: 16px;
+            
+            /* Adaptive typography with clamp() */
+            --fs-100: clamp(12px, 1.2vw, 14px);
+            --fs-200: clamp(14px, 1.4vw, 16px);
+            --fs-300: clamp(16px, 1.6vw, 18px);
+            --fs-400: clamp(18px, 2vw, 22px);
+            --fs-500: clamp(22px, 2.4vw, 26px);
         }
         
         [data-theme="dark"] {
@@ -49,7 +60,7 @@
         }
         
         .container {
-            max-width: 400px;
+            width: min(70% - 2*var(--container-pad), var(--container-max));
             margin: 0 auto;
             background: transparent;
             min-height: 100vh;
@@ -66,7 +77,7 @@
         }
         
         .header h1 {
-            font-size: 11px;
+            font-size: var(--fs-200);
             font-weight: bold;
             color: var(--text-color);
             margin-bottom: 2px;
@@ -102,6 +113,7 @@
             align-items: center;
             gap: 6px;
         }
+        
         
         .header-unified {
             background: var(--header-background);
@@ -188,6 +200,17 @@
             border: none;
             width: 100%;
             box-sizing: border-box;
+        }
+        
+        /* Buttons aligned to bottom in cards */
+        .card > div:last-child {
+            margin-top: auto;
+        }
+        
+        /* Compact card for Free Trial */
+        .card-compact {
+            padding: 12px !important;
+            min-height: auto !important;
         }
         
         .btn-outline {
@@ -369,7 +392,7 @@
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(229, 231, 235, 0.5);
-            padding: 6px 12px;
+            padding: 8px 16px;
             max-width: 400px;
             margin: 0 auto;
         }
@@ -384,11 +407,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 6px 8px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s;
             color: var(--secondary-color);
+            min-width: 70px;
         }
         
         .nav-item.active {
@@ -397,14 +421,14 @@
         }
         
         .nav-item svg {
-            width: 20px;
-            height: 20px;
-            margin-bottom: 2px;
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
         }
         
         .nav-item span {
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 600;
         }
         
         .page {
@@ -654,6 +678,327 @@
             gap: 8px;
         }
         
+        /* Mobile: keep original horizontal layout */
+        @media (max-width: 767px) {
+            .container {
+                width: 100% - 2*var(--container-pad);
+                max-width: 400px;
+            }
+            
+            .main-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+        
+        /* Tablet: 768px - 1023px */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            :root {
+                --container-pad: 20px;
+            }
+            
+            .container {
+                max-width: 560px;
+            }
+            
+            /* Referral Program - улучшенная подача информации */
+            #referral-page .card {
+                padding: 20px !important;
+                min-height: auto !important;
+            }
+            
+            #referral-page h3 {
+                font-size: 18px !important;
+                margin-bottom: 12px !important;
+                text-align: center !important;
+            }
+            
+            #referral-page p {
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+            }
+            
+            #referral-page .btn {
+                padding: 12px 20px !important;
+                font-size: 16px !important;
+            }
+            
+            /* Улучшенная подача для статистики */
+            #referral-page .card div[style*="display: grid"] {
+                gap: 20px !important;
+            }
+            
+            #referral-page .card div[style*="text-align: center"] {
+                padding: 12px !important;
+            }
+            
+            #referral-page .card div[style*="font-size: 24px"] {
+                font-size: 28px !important;
+                margin-bottom: 8px !important;
+            }
+            
+            #referral-page .card div[style*="font-size: 14px"] {
+                font-size: 16px !important;
+            }
+            :root {
+                --container-pad: 20px;
+            }
+            
+            .container {
+                max-width: 560px;
+            }
+            
+            /* Main page: 1 column (vertical) */
+            .main-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Medium cards for tablet */
+            .card {
+                border-radius: 18px;
+                padding: 18px;
+                margin-bottom: 10px;
+                min-height: 140px;
+                justify-content: space-between;
+            }
+            
+            .btn {
+                padding: 14px 18px;
+                border-radius: 14px;
+                font-size: 15px;
+            }
+            
+            .balance-amount {
+                font-size: 32px;
+            }
+            
+            /* Plans: 3 columns */
+            .plans-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+            
+            /* Settings: 1 column (vertical) */
+            .settings-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            /* Connect: 1 column (vertical) */
+            .connect-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            /* Top Up: 1 column (vertical) */
+            .topup-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            /* Tablet navigation - medium size */
+            .bottom-nav {
+                padding: 10px 20px;
+                max-width: 500px;
+            }
+            
+            .nav-item {
+                padding: 10px 14px;
+                min-width: 80px;
+            }
+            
+            .nav-item svg {
+                width: 26px;
+                height: 26px;
+                margin-bottom: 5px;
+            }
+            
+            .nav-item span {
+                font-size: 13px;
+                font-weight: 600;
+            }
+        }
+        
+        /* Desktop: 1024px+ */
+        @media (min-width: 1024px) {
+            :root {
+                --container-pad: 24px;
+            }
+            
+            .container {
+                max-width: 840px;
+            }
+            
+            /* Referral Program - улучшенная подача информации */
+            #referral-page .card {
+                padding: 24px !important;
+                min-height: auto !important;
+            }
+            
+            #referral-page h3 {
+                font-size: 20px !important;
+                margin-bottom: 16px !important;
+                text-align: center !important;
+            }
+            
+            #referral-page p {
+                font-size: 16px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            #referral-page .btn {
+                padding: 12px 20px !important;
+                font-size: 16px !important;
+            }
+            
+            /* Улучшенная подача для статистики */
+            #referral-page .card div[style*="display: grid"] {
+                gap: 24px !important;
+            }
+            
+            #referral-page .card div[style*="text-align: center"] {
+                padding: 16px !important;
+            }
+            
+            #referral-page .card div[style*="font-size: 24px"] {
+                font-size: 32px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            #referral-page .card div[style*="font-size: 14px"] {
+                font-size: 18px !important;
+            }
+            :root {
+                --container-pad: 24px;
+            }
+            
+            .container {
+                max-width: 840px;
+            }
+            
+            /* Main page: 1 column (vertical) */
+            .main-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            /* Larger cards for desktop */
+            .card {
+                border-radius: 20px;
+                padding: 24px;
+                margin-bottom: 12px;
+                min-height: 180px;
+                justify-content: space-between;
+            }
+            
+            .btn {
+                padding: 16px 20px;
+                border-radius: 16px;
+                font-size: 16px;
+            }
+            
+            .balance-amount {
+                font-size: 36px;
+            }
+            
+            /* Plans: 4 columns */
+            .plans-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+            
+            /* Settings: 1 column (vertical) */
+            .settings-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            /* Connect: 1 column (vertical) */
+            .connect-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Top Up: 1 column (vertical) */
+            .topup-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Desktop navigation - larger size */
+            .bottom-nav {
+                padding: 12px 24px;
+                max-width: 600px;
+            }
+            
+            .nav-item {
+                padding: 12px 16px;
+                min-width: 90px;
+            }
+            
+            .nav-item svg {
+                width: 28px;
+                height: 28px;
+                margin-bottom: 6px;
+            }
+            
+            .nav-item span {
+                font-size: 14px;
+                font-weight: 600;
+            }
+            
+            /* Hover effects for desktop */
+            @media (hover: hover) and (pointer: fine) {
+                .btn:hover {
+                    background: var(--primary-hover);
+                    transform: translateY(-2px);
+                }
+                
+                .nav-item:hover {
+                    background: rgba(6, 182, 212, 0.1);
+                    transform: translateY(-1px);
+                }
+                
+                .card:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 25px var(--shadow-color);
+                }
+            }
+        }
+        
+        /* Large Desktop: 1440px+ */
+        @media (min-width: 1440px) {
+            :root {
+                --container-max: 924px;
+            }
+        }
+        
+        /* Accessibility: Focus styles */
+        :focus-visible {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
         /* Mobile color optimizations - unified with desktop */
         @media (max-width: 768px) {
             /* Переопределение inline стилей для мобильных */
@@ -722,52 +1067,53 @@
             }
             
             #topup-page .btn {
-                padding: 6px !important;
-                font-size: 12px !important;
+                padding: 12px 18px !important;
+                font-size: 16px !important;
+                font-weight: 600 !important;
             }
             
             /* Connect page mobile optimizations */
             #connect-page .card {
-                padding: 6px !important;
-                margin-bottom: 6px !important;
-                min-height: 40px !important;
+                padding: 12px !important;
+                margin-bottom: 8px !important;
+                min-height: 60px !important;
             }
             
             #connect-page h3 {
-                font-size: 14px !important;
-                margin-bottom: 6px !important;
+                font-size: 18px !important;
+                margin-bottom: 8px !important;
             }
             
             #connect-page p {
-                font-size: 12px !important;
-                margin-bottom: 6px !important;
+                font-size: 16px !important;
+                margin-bottom: 8px !important;
             }
             
             #connect-page .btn {
-                padding: 6px !important;
-                font-size: 12px !important;
+                padding: 12px 16px !important;
+                font-size: 14px !important;
             }
             
             #connect-page label {
-                font-size: 10px !important;
+                font-size: 16px !important;
             }
             
             #connect-page div[style*="font-family: monospace"] {
-                font-size: 10px !important;
-                padding: 3px !important;
+                font-size: 16px !important;
+                padding: 6px !important;
             }
             
             #connect-page div[style*="background: var(--input-background)"] {
-                padding: 6px !important;
-                margin-bottom: 6px !important;
+                padding: 12px !important;
+                margin-bottom: 8px !important;
             }
             
             #connect-page div[style*="margin-bottom: 6px"] {
-                margin-bottom: 4px !important;
+                margin-bottom: 8px !important;
             }
             
             #connect-page div[style*="margin-top: 2px"] {
-                margin-top: 1px !important;
+                margin-top: 4px !important;
             }
         }
         
@@ -875,21 +1221,26 @@
         
         .payment-info {
             display: flex;
-            flex-direction: column;
-            gap: 4px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
         }
         
         .payment-name {
             font-weight: 500;
             color: var(--text-color);
             font-size: 16px;
+            line-height: 1;
         }
         
         .payment-balance {
-            font-size: 14px;
-            color: #10b981;
-            font-weight: 500;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 18px;
+            line-height: 1;
         }
+        
         
         .payment-radio {
             width: 20px;
@@ -930,8 +1281,8 @@
         
         .subscription-option {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
             padding: 16px;
             border: 3px solid var(--border-color);
             background: var(--card-background);
@@ -940,6 +1291,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 120px;
         }
         
         .subscription-option::before {
@@ -973,6 +1325,12 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            margin-bottom: 12px;
+        }
+        
+        .subscription-option .btn {
+            margin-top: auto;
+            width: 100%;
         }
         
         .subscription-duration {
@@ -989,15 +1347,15 @@
         
         .popular-badge {
             position: absolute;
-            top: -8px;
+            top: -4px;
             left: 50%;
             transform: translateX(-50%);
-            background: #06b6d4;
+            background: #ff6b35;
             color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -1007,37 +1365,46 @@
         <div id="main-page" class="page active">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
 
             <div class="content">
-                <!-- Current Balance Card -->
-                <div class="card balance-card-new">
-                    <div class="balance-info-new">
-                            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-color); margin-bottom: 6px;">Current Balance</h3>
-                        <div class="balance-amount">$42.50</div>
+                <div class="main-grid">
+                    <!-- Current Balance Card -->
+                    <div class="card balance-card-new">
+                        <div class="balance-info-new">
+                                <h3 style="font-size: 24px; font-weight: 700; color: var(--text-color); margin-bottom: 8px;" data-translate="currentBalance">Current Balance</h3>
+                            <div class="balance-amount">$42.50</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" style="margin-bottom: 8px;" onclick="showPage('topup')" data-translate="chargeBalance">Charge Balance</button>
+                            <button class="btn btn-outline" onclick="showPage('plans')" data-translate="extendPlan">Extend your plan</button>
+                        </div>
                     </div>
-                    <button class="btn btn-primary" style="margin-top: 16px;" onclick="showPage('topup')">Charge Balance</button>
-                    <button class="btn btn-outline" style="margin-top: 12px;" onclick="showPage('plans')">Extend your plan</button>
-                </div>
 
-                <!-- VPN Connection Card -->
-                <div class="card vpn-card-new">
-                    <h3 style="font-size: 18px; font-weight: 700; color: var(--text-color); margin-bottom: 16px; text-align: center;">VPN Services</h3>
-                    <button class="btn btn-primary" style="margin-bottom: 12px;" onclick="showPage('plans')">Buy VPN</button>
-                    <button class="btn btn-outline" onclick="showPage('connect')">Connect VPN</button>
-                </div>
-
-                <!-- Invite Friend Card -->
-                <div class="card invite-card-new">
-                    <div class="invite-info-new">
-                        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-color); margin-bottom: 6px;">Invite Friends</h3>
-                        <p style="color: var(--secondary-color); font-size: 16px;">Earn up to 25% from every friend</p>
+                    <!-- VPN Connection Card -->
+                    <div class="card vpn-card-new">
+                        <div>
+                            <h3 style="font-size: 24px; font-weight: 700; color: var(--text-color); margin-bottom: 20px; text-align: center;" data-translate="vpnServices">VPN Services</h3>
+                        </div>
+                        <div style="width: 100%;">
+                            <button class="btn btn-primary" style="margin-bottom: 8px;" onclick="showPage('plans')" data-translate="buyVpn">Buy VPN</button>
+                            <button class="btn btn-outline" onclick="showPage('connect')" data-translate="connectVpn">Connect VPN</button>
+                        </div>
                     </div>
-                    <button class="btn btn-outline" style="margin-top: 16px;" onclick="showPage('referral')">Invite</button>
-                </div>
 
+                    <!-- Invite Friend Card -->
+                    <div class="card invite-card-new">
+                        <div class="invite-info-new">
+                            <h3 style="font-size: 24px; font-weight: 700; color: var(--text-color); margin-bottom: 8px;" data-translate="inviteFriends">Invite Friends</h3>
+                            <p style="color: var(--secondary-color); font-size: 18px;" data-translate="earnUpTo">Earn up to 25% from every friend</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline" onclick="showPage('referral')" data-translate="invite">Invite</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1045,40 +1412,42 @@
         <div id="plans-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
 
             <div class="content">
                 <!-- Current Balance & Plan -->
-                <div class="card" style="text-align: center; padding: 8px; min-height: 50px;">
-                    <div style="font-size: 12px; font-weight: bold; color: var(--text-color); margin-bottom: 1px;">Current Balance</div>
-                    <div style="font-size: 20px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">$42.50</div>
-                    
-                    <div style="font-size: 12px; font-weight: 600; color: var(--text-color); margin-bottom: 1px;">Current Plan Valid Until:</div>
-                    <div style="font-size: 14px; font-weight: bold; color: #06b6d4;">27.10.2025</div>
-                </div>
+            <div class="card" style="text-align: center; padding: 8px; min-height: 50px;">
+                <div style="font-size: 16px; font-weight: bold; color: var(--text-color); margin-bottom: 2px;" data-translate="currentBalance">Current Balance</div>
+                <div style="font-size: 28px; font-weight: bold; color: #06b6d4; margin-bottom: 6px;">$42.50</div>
+                
+                <div style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 2px;" data-translate="currentPlanValidUntil">Current Plan Valid Until:</div>
+                <div style="font-size: 18px; font-weight: bold; color: #06b6d4;">27.10.2025</div>
+            </div>
 
                 <!-- Subscription Options -->
                 <div class="card">
-                    <h3 style="font-size: 28px; font-weight: 700; color: var(--text-color); margin-bottom: 20px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Choose your Plan</h3>
+                    <h3 style="font-size: 28px; font-weight: 700; color: var(--text-color); margin-bottom: 20px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.1);" data-translate="chooseYourPlan">Choose your Plan</h3>
                     
-                    <div class="subscription-options">
+                    <div class="subscription-options plans-grid">
                         <!-- 1 Month -->
                         <div class="subscription-option" onclick="selectSubscription(this, '1month')">
                             <div class="subscription-info">
                                 <span class="subscription-duration">1 month</span>
                                 <span class="subscription-price">$3</span>
                             </div>
+                            <button class="btn btn-outline" style="margin-top: auto;" data-translate="selectPlan">Select Plan</button>
                         </div>
                         
                         <!-- 3 Months (Popular) -->
                         <div class="subscription-option popular" onclick="selectSubscription(this, '3months')">
-                            <div class="popular-badge">Popular</div>
+                            <div class="popular-badge" data-translate="popular">Popular</div>
                             <div class="subscription-info">
                                 <span class="subscription-duration">3 months</span>
                                 <span class="subscription-price">$8</span>
                             </div>
+                            <button class="btn btn-primary" style="margin-top: auto;" data-translate="selectPlan">Select Plan</button>
                         </div>
                         
                         <!-- 12 Months -->
@@ -1087,13 +1456,14 @@
                                 <span class="subscription-duration">12 months</span>
                                 <span class="subscription-price">$30</span>
                             </div>
+                            <button class="btn btn-outline" style="margin-top: auto;" data-translate="selectPlan">Select Plan</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Free Trial -->
-                <div class="card" style="text-align: center;">
-                    <button class="btn" onclick="showPage('connect')">2 days Free Trial</button>
+                <div class="card card-compact" style="text-align: center;">
+                    <button class="btn" onclick="showPage('connect')" data-translate="freeTrial">2 days Free Trial</button>
                 </div>
             </div>
         </div>
@@ -1102,70 +1472,70 @@
         <div id="settings-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
 
             <div class="content">
-                <!-- Settings Controls -->
-                <div class="card" style="padding: 8px; min-height: 50px;">
-                    <!-- Language Setting -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--border-color);">
-                        <div style="font-size: 14px; font-weight: bold; color: var(--text-color);">Language</div>
-                        <div class="language-toggle" onclick="toggleLanguage()" style="min-width: 60px; justify-content: center;">
-                            <span class="lang-text" id="languageText">En</span>
-                            <div class="toggle-switch">
-                                <div class="toggle-slider" id="languageToggle"></div>
+                <div class="settings-grid">
+                    <!-- Settings Controls -->
+                    <div class="card" style="padding: 8px; min-height: 50px;">
+                        <!-- Language Setting -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--border-color);">
+                            <div style="font-size: 14px; font-weight: bold; color: var(--text-color);" data-translate="language">Language</div>
+                            <div class="language-toggle" onclick="toggleLanguage()" style="min-width: 60px; justify-content: center;">
+                                <span class="lang-text" id="languageText">En</span>
+                                <div class="toggle-switch">
+                                    <div class="toggle-slider" id="languageToggle"></div>
+                                </div>
+                                <span class="lang-text" id="languageTextRu">Ru</span>
                             </div>
-                            <span class="lang-text" id="languageTextRu">Ru</span>
+                        </div>
+                        
+                        <!-- Theme Setting -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0;">
+                            <div style="font-size: 14px; font-weight: bold; color: var(--text-color);" data-translate="theme">Theme</div>
+                            <div class="theme-toggle" onclick="toggleTheme()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #f59e0b;">
+                                    <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <div class="toggle-switch">
+                                    <div class="toggle-slider" id="themeToggle"></div>
+                                </div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #1e40af;">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Theme Setting -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0;">
-                        <div style="font-size: 14px; font-weight: bold; color: var(--text-color);">Theme</div>
-                        <div class="theme-toggle" onclick="toggleTheme()">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #f59e0b;">
-                                <circle cx="12" cy="12" r="5" fill="currentColor"/>
-                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <div class="toggle-switch">
-                                <div class="toggle-slider" id="themeToggle"></div>
-                            </div>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #1e40af;">
-                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Navigation Links -->
-                <div style="margin-top: 16px;">
-                    <div class="settings-link" onclick="showPage('referral')" style="color: var(--text-color);">
+                    <!-- Navigation Links -->
+                    <div class="settings-link" onclick="showPage('referral')" style="color: var(--text-color);" data-translate="referralProgram">
                         Referral Program
                     </div>
-                    <div class="settings-link" onclick="showPage('paymenthistory')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('paymenthistory')" style="color: var(--text-color);" data-translate="paymentHistory">
                         Payment History
                     </div>
-                    <div class="settings-link" onclick="showPage('howtouse')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('howtouse')" style="color: var(--text-color);" data-translate="howToUse">
                         How to Use
                     </div>
-                    <div class="settings-link" onclick="showPage('loyalty')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('loyalty')" style="color: var(--text-color);" data-translate="loyaltyProgram">
                         Loyalty Program
                     </div>
-                    <div class="settings-link" onclick="showPage('about')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('about')" style="color: var(--text-color);" data-translate="aboutUs">
                         About Us
                     </div>
-                    <div class="settings-link" onclick="showPage('contact')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('contact')" style="color: var(--text-color);" data-translate="contactUs">
                         Contact Us
                     </div>
-                    <div class="settings-link" onclick="showPage('refund')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('refund')" style="color: var(--text-color);" data-translate="refundPolicy">
                         Refund Policy
                     </div>
-                    <div class="settings-link" onclick="showPage('privacy')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('privacy')" style="color: var(--text-color);" data-translate="privacyPolicy">
                         Privacy Policy
                     </div>
-                    <div class="settings-link" onclick="showPage('terms')" style="color: var(--text-color);">
+                    <div class="settings-link" onclick="showPage('terms')" style="color: var(--text-color);" data-translate="termsOfUse">
                         Terms of Use
                     </div>
                 </div>
@@ -1176,57 +1546,59 @@
         <div id="connect-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
 
             <div class="content">
-                <!-- VPN Status -->
-                <div class="card" style="padding: 8px; min-height: 50px;">
-                    <div style="text-align: center;">
-                        <p style="color: var(--secondary-color); margin-bottom: 8px; font-size: 14px;">Click the link below to connect via HAPP</p>
-                        <button class="btn btn-primary" onclick="window.open('https://happ.app', '_blank')" style="padding: 8px; font-size: 14px;">Open HAPP</button>
-                    </div>
-                </div>
-
-                <!-- Manual Settings -->
-                <div class="card" style="padding: 8px; min-height: 50px;">
-                    <h3 style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Manual Settings</h3>
-                    <p style="color: var(--secondary-color); margin-bottom: 8px; font-size: 12px;">Use these settings to manually configure VPN in any compatible app:</p>
-                    
-                    <div style="background: var(--input-background); padding: 8px; border-radius: 6px; margin-bottom: 8px;">
-                        <div style="margin-bottom: 6px;">
-                            <label style="font-weight: 500; color: var(--text-color); font-size: 12px;">Server Address:</label>
-                            <div style="background: var(--card-background); padding: 4px; border-radius: 3px; font-family: monospace; font-size: 12px; margin-top: 2px; color: var(--text-color);">vpn.tonny.com</div>
-                        </div>
-                        <div style="margin-bottom: 6px;">
-                            <label style="font-weight: 500; color: var(--text-color); font-size: 12px;">Port:</label>
-                            <div style="background: var(--card-background); padding: 4px; border-radius: 3px; font-family: monospace; font-size: 12px; margin-top: 2px; color: var(--text-color);">1194</div>
-                        </div>
-                        <div style="margin-bottom: 6px;">
-                            <label style="font-weight: 500; color: var(--text-color); font-size: 12px;">Protocol:</label>
-                            <div style="background: var(--card-background); padding: 4px; border-radius: 3px; font-family: monospace; font-size: 12px; margin-top: 2px; color: var(--text-color);">UDP</div>
-                        </div>
-                        <div>
-                            <label style="font-weight: 500; color: var(--text-color); font-size: 12px;">Username:</label>
-                            <div style="background: var(--card-background); padding: 4px; border-radius: 3px; font-family: monospace; font-size: 12px; margin-top: 2px; color: var(--text-color);">user123</div>
+                <div class="connect-grid">
+                    <!-- VPN Status -->
+                    <div class="card" style="padding: 16px; min-height: 80px;">
+                        <div style="text-align: center;">
+                            <p style="color: var(--secondary-color); margin-bottom: 16px; font-size: 20px;" data-translate="clickLinkBelow">Click the link below to connect via HAPP</p>
+                            <button class="btn btn-primary" onclick="window.open('https://happ.app', '_blank')" style="padding: 16px 20px; font-size: 16px;" data-translate="openHapp">Open HAPP</button>
                         </div>
                     </div>
-                    
-                    <button class="btn btn-outline" style="width: 100%; padding: 8px; font-size: 14px;" onclick="copySettings()">Copy Settings</button>
-                </div>
 
-                <!-- Connection Info -->
-                <div class="card" style="padding: 8px; min-height: 50px;">
-                    <h3 style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Connection Info</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 18px; font-weight: bold; color: #06b6d4; margin-bottom: 2px;">0ms</div>
-                            <div style="font-size: 12px; color: var(--secondary-color);">Ping</div>
+                    <!-- Manual Settings -->
+                    <div class="card" style="padding: 16px; min-height: 120px;">
+                        <h3 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 12px; text-align: center;" data-translate="manualSettings">Manual Settings</h3>
+                        <p style="color: var(--secondary-color); margin-bottom: 12px; font-size: 18px; text-align: center;" data-translate="useTheseSettings">Use these settings to manually configure VPN in any compatible app:</p>
+                        
+                        <div style="background: var(--input-background); padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+                            <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                                <label style="font-weight: 600; color: var(--text-color); font-size: 20px; min-width: 160px;" data-translate="serverAddress">Server Address:</label>
+                                <div style="background: var(--card-background); padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 20px; color: var(--text-color); flex: 1;">vpn.tonny.com</div>
+                            </div>
+                            <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                                <label style="font-weight: 600; color: var(--text-color); font-size: 20px; min-width: 160px;" data-translate="port">Port:</label>
+                                <div style="background: var(--card-background); padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 20px; color: var(--text-color); flex: 1;">1194</div>
+                            </div>
+                            <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
+                                <label style="font-weight: 600; color: var(--text-color); font-size: 20px; min-width: 160px;" data-translate="protocol">Protocol:</label>
+                                <div style="background: var(--card-background); padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 20px; color: var(--text-color); flex: 1;">UDP</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <label style="font-weight: 600; color: var(--text-color); font-size: 20px; min-width: 160px;" data-translate="username">Username:</label>
+                                <div style="background: var(--card-background); padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 20px; color: var(--text-color); flex: 1;">user123</div>
+                            </div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 18px; font-weight: bold; color: #06b6d4; margin-bottom: 2px;">0 MB</div>
-                            <div style="font-size: 12px; color: var(--secondary-color);">Data Used</div>
+                        
+                        <button class="btn btn-outline" style="width: 100%; padding: 16px 20px; font-size: 16px;" onclick="copySettings()" data-translate="copySettings">Copy Settings</button>
+                    </div>
+
+                    <!-- Connection Info -->
+                    <div class="card" style="padding: 12px; min-height: 60px;">
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px; text-align: center;" data-translate="connectionInfo">Connection Info</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 20px; font-weight: bold; color: #06b6d4; margin-bottom: 2px;">0ms</div>
+                                <div style="font-size: 14px; color: var(--secondary-color);" data-translate="ping">Ping</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 20px; font-weight: bold; color: #06b6d4; margin-bottom: 2px;">0 MB</div>
+                                <div style="font-size: 14px; color: var(--secondary-color);" data-translate="dataUsed">Data Used</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1237,7 +1609,7 @@
         <div id="referral-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
 
@@ -1247,29 +1619,29 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <!-- Referral Link -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Your Referral Link</h3>
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="yourReferralLink">Your Referral Link</h3>
                     <div style="background: var(--input-background); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-family: monospace; font-size: 14px; word-break: break-all;">
-                        https://t.me/tonny_vpn_bot?start=ref123456
+                        https://t.me/sinus_vpn_bot?start=ref123456
                     </div>
-                    <button class="btn btn-primary" style="width: 100%;" onclick="copyReferralLink()">Copy Link</button>
+                    <button class="btn btn-primary" onclick="copyReferralLink()" data-translate="copyLink">Copy Link</button>
                 </div>
 
                 <!-- Referral Stats -->
                 <div class="card">
-                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Your Statistics</h3>
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="yourStatistics">Your Statistics</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                         <div style="text-align: center;">
                             <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">12</div>
-                            <div style="font-size: 14px; color: var(--secondary-color);">Total Referrals</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);" data-translate="totalReferrals">Total Referrals</div>
                         </div>
                         <div style="text-align: center;">
                             <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">$25.50</div>
-                            <div style="font-size: 14px; color: var(--secondary-color);">Total Earned</div>
+                            <div style="font-size: 14px; color: var(--secondary-color);" data-translate="earnedAmount">Total Earned</div>
                         </div>
                     </div>
                 </div>
@@ -1278,8 +1650,8 @@
                 <div class="card">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;">Available for Withdraw</h3>
-                            <p style="color: var(--secondary-color); font-size: 14px;">Cooldown: 7 days</p>
+                            <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 4px;" data-translate="availableForWithdraw">Available for Withdraw</h3>
+                            <p style="color: var(--secondary-color); font-size: 14px;" data-translate="cooldown">Cooldown: 7 days</p>
                         </div>
                         <div style="text-align: right;">
                             <div style="font-size: 24px; font-weight: bold; color: #06b6d4; margin-bottom: 4px;">$15.00</div>
@@ -1294,72 +1666,76 @@
         <div id="topup-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
 
             <div class="content">
-                <!-- Payment Amount -->
-                <div class="card" style="text-align: center; padding: 8px; min-height: 50px;">
-                    <h2 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Enter amount to pay</h2>
-                    
-                    <!-- Amount Input -->
-                    <div style="position: relative; margin-bottom: 8px;">
-                        <input type="number" id="amountInput" value="10" min="1" max="1000" 
-                               style="width: 100%; padding: 8px 50px 8px 8px; border: 2px solid var(--input-border); border-radius: 8px; font-size: 18px; font-weight: bold; color: var(--primary-color); background: var(--input-background); text-align: center;"
-                               oninput="updatePayButton()">
-                        <div style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: var(--secondary-color); font-size: 14px; font-weight: 600;">USD</div>
-                    </div>
-                </div>
-
-                <!-- Payment Methods -->
-                <div class="card" style="padding: 8px; min-height: 50px;">
-                    <h3 style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Select Payment Method</h3>
-                    
-                    <div class="payment-methods">
-                        <div class="payment-method" onclick="selectPaymentMethod(this, 'balance')">
-                            <div class="payment-info">
-                                <span class="payment-name">Pay from Balance</span>
-                                <span class="payment-balance">$42.50</span>
-                            </div>
-                            <div class="payment-radio"></div>
-                        </div>
+                <div class="topup-grid">
+                    <!-- Payment Amount -->
+                    <div class="card" style="text-align: center; padding: 8px; min-height: 50px;">
+                            <h2 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;" data-translate="enterAmountToPay">Enter amount to pay</h2>
                         
-                        <div class="payment-method" onclick="selectPaymentMethod(this, 'telegram')">
-                            <div class="payment-info">
-                                <span class="payment-name">Telegram Stars</span>
-                            </div>
-                            <div class="payment-radio"></div>
-                        </div>
-                        
-                        <div class="payment-method" onclick="selectPaymentMethod(this, 'usdt')">
-                            <div class="payment-info">
-                                <span class="payment-name">USDT</span>
-                            </div>
-                            <div class="payment-radio"></div>
-                        </div>
-                        
-                        <div class="payment-method" onclick="selectPaymentMethod(this, 'ton')">
-                            <div class="payment-info">
-                                <span class="payment-name">TON</span>
-                            </div>
-                            <div class="payment-radio"></div>
-                        </div>
-                        
-                        <div class="payment-method" onclick="selectPaymentMethod(this, 'other')">
-                            <div class="payment-info">
-                                <span class="payment-name">Other Methods</span>
-                            </div>
-                            <div class="payment-radio"></div>
+                        <!-- Amount Input -->
+                        <div style="position: relative; margin-bottom: 8px;">
+                            <input type="number" id="amountInput" value="10" min="1" max="1000" 
+                                   style="width: 100%; padding: 8px 50px 8px 8px; border: 2px solid var(--input-border); border-radius: 8px; font-size: 18px; font-weight: bold; color: var(--primary-color); background: var(--input-background); text-align: center;"
+                                   oninput="updatePayButton()">
+                            <div style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: var(--secondary-color); font-size: 14px; font-weight: 600;">USD</div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Payment Button -->
-                <div class="card" style="padding: 8px; min-height: 50px;">
-                    <button class="btn btn-primary" id="payButton" onclick="processPayment()" disabled style="padding: 8px; font-size: 14px;">
-                        Pay $10
-                    </button>
+                    <!-- Payment Methods -->
+                    <div class="card" style="padding: 8px; min-height: 50px;">
+                            <h3 style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;" data-translate="selectPaymentMethod">Select Payment Method</h3>
+                        
+                        <div class="payment-methods">
+                            <div class="payment-method" onclick="selectPaymentMethod(this, 'balance')">
+                                <div class="payment-info">
+                                    <span class="payment-name" data-translate="payFromBalance">Pay from Balance</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span class="payment-balance"><span data-translate="currentBalance">Current Balance:</span> $42.50</span>
+                                    <div class="payment-radio"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method" onclick="selectPaymentMethod(this, 'telegram')">
+                                <div class="payment-info">
+                                    <span class="payment-name" data-translate="telegramStars">Telegram Stars</span>
+                                </div>
+                                <div class="payment-radio"></div>
+                            </div>
+                            
+                            <div class="payment-method" onclick="selectPaymentMethod(this, 'usdt')">
+                                <div class="payment-info">
+                                    <span class="payment-name" data-translate="usdt">USDT</span>
+                                </div>
+                                <div class="payment-radio"></div>
+                            </div>
+                            
+                            <div class="payment-method" onclick="selectPaymentMethod(this, 'ton')">
+                                <div class="payment-info">
+                                    <span class="payment-name" data-translate="ton">TON</span>
+                                </div>
+                                <div class="payment-radio"></div>
+                            </div>
+                            
+                            <div class="payment-method" onclick="selectPaymentMethod(this, 'other')">
+                                <div class="payment-info">
+                                    <span class="payment-name" data-translate="otherMethods">Other Methods</span>
+                                </div>
+                                <div class="payment-radio"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Button -->
+                    <div class="card" style="padding: 8px; min-height: 50px;">
+                            <button class="btn btn-primary" id="payButton" onclick="processPayment()" disabled style="padding: 16px 24px; font-size: 18px; font-weight: 600;" data-translate="pay">
+                                Pay $10
+                            </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1368,7 +1744,7 @@
         <div id="paymenthistory-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
 
@@ -1378,12 +1754,12 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <!-- Payment History -->
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Payment History</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="paymentHistory">Payment History</h2>
                     
                     <!-- Transaction Item -->
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border-color);">
@@ -1472,7 +1848,7 @@
         <div id="howtouse-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
             
@@ -1482,11 +1858,11 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Getting Started with Tonny VPN</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="howToUse">Getting Started with Sinus VPN</h2>
                     
                     <div style="margin-bottom: 20px;">
                         <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">1. Purchase a Plan</h3>
@@ -1515,7 +1891,7 @@
         <div id="loyalty-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
             
@@ -1525,15 +1901,15 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Earn Rewards with Tonny VPN</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="loyaltyProgram">Earn Rewards with Sinus VPN</h2>
                     
                     <div style="margin-bottom: 20px;">
                         <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">🎯 Referral Rewards</h3>
-                        <p style="color: var(--secondary-color); line-height: 1.6;">Earn up to 25% commission for every friend you refer to Tonny VPN.</p>
+                        <p style="color: var(--secondary-color); line-height: 1.6;">Earn up to 25% commission for every friend you refer to Sinus VPN.</p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
@@ -1558,7 +1934,7 @@
         <div id="about-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
             
@@ -1568,19 +1944,19 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">About Tonny VPN</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="aboutUs">About Sinus VPN</h2>
                     
                     <div style="margin-bottom: 20px;">
-                        <p style="color: var(--secondary-color); line-height: 1.6; margin-bottom: 16px;">Tonny VPN is a leading provider of secure and reliable VPN services, committed to protecting your online privacy and freedom.</p>
+                        <p style="color: var(--secondary-color); line-height: 1.6; margin-bottom: 16px;">Sinus VPN is a leading provider of secure and reliable VPN services, committed to protecting your online privacy and freedom.</p>
                         
                         <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Our Mission</h3>
                         <p style="color: var(--secondary-color); line-height: 1.6; margin-bottom: 16px;">To provide fast, secure, and affordable VPN services that protect your digital privacy and allow unrestricted access to the internet.</p>
                         
-                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Why Choose Tonny VPN?</h3>
+                        <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Why Choose Sinus VPN?</h3>
                         <ul style="color: var(--secondary-color); line-height: 1.6; padding-left: 20px;">
                             <li>Military-grade encryption</li>
                             <li>No-logs policy</li>
@@ -1597,7 +1973,7 @@
         <div id="contact-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
             
@@ -1607,11 +1983,11 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Get in Touch</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="contactUs">Get in Touch</h2>
                     
                     <div style="margin-bottom: 20px;">
                         <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">📧 Email Support</h3>
@@ -1640,7 +2016,7 @@
         <div id="refund-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
             
@@ -1650,11 +2026,11 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Refund Policy</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="refundPolicy">Refund Policy</h2>
                     
                     <div style="margin-bottom: 20px;">
                         <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">30-Day Money-Back Guarantee</h3>
@@ -1683,7 +2059,7 @@
         <div id="privacy-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
             
@@ -1693,11 +2069,11 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Privacy Policy</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="privacyPolicy">Privacy Policy</h2>
                     
                     <div style="margin-bottom: 20px;">
                         <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">No-Logs Policy</h3>
@@ -1726,7 +2102,7 @@
         <div id="terms-page" class="page">
             <div class="header-unified">
                 <div class="header-content-new">
-                    <h1>Tonny VPN</h1>
+                    <h1>Sinus VPN</h1>
                 </div>
             </div>
             
@@ -1736,11 +2112,11 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    Back to Settings
+                    <span data-translate="backToSettings">Back to Settings</span>
                 </button>
                 
                 <div class="card">
-                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;">Terms of Use</h2>
+                    <h2 style="font-size: 24px; font-weight: 600; color: var(--text-color); margin-bottom: 16px;" data-translate="termsOfUse">Terms of Use</h2>
                     
                     <div style="margin-bottom: 20px;">
                         <h3 style="font-size: 18px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;">Acceptable Use</h3>
@@ -1772,20 +2148,20 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
-                    <span>Main</span>
+                    <span data-translate="main">Main</span>
                 </div>
                 <div class="nav-item" onclick="showPage('plans')">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    <span>Plans</span>
+                    <span data-translate="plans">Plans</span>
                 </div>
                 <div class="nav-item" onclick="showPage('settings')">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span>Settings</span>
+                    <span data-translate="settings">Settings</span>
                 </div>
             </div>
         </div>
@@ -1807,23 +2183,23 @@
             
             // Update page title
             const pageTitles = {
-                'main': 'Tonny VPN - Main',
-                'plans': 'Tonny VPN - Plans',
-                'settings': 'Tonny VPN - Settings',
-                'connect': 'Tonny VPN - Connect',
-                'referral': 'Tonny VPN - Referral Program',
-                'paymenthistory': 'Tonny VPN - Payment History',
-                'topup': 'Tonny VPN - Top Up',
-                'howtouse': 'Tonny VPN - How to Use',
-                'loyalty': 'Tonny VPN - Loyalty Program',
-                'about': 'Tonny VPN - About Us',
-                'contact': 'Tonny VPN - Contact Us',
-                'refund': 'Tonny VPN - Refund Policy',
-                'privacy': 'Tonny VPN - Privacy Policy',
-                'terms': 'Tonny VPN - Terms of Use'
+                'main': 'Sinus VPN - Main',
+                'plans': 'Sinus VPN - Plans',
+                'settings': 'Sinus VPN - Settings',
+                'connect': 'Sinus VPN - Connect',
+                'referral': 'Sinus VPN - Referral Program',
+                'paymenthistory': 'Sinus VPN - Payment History',
+                'topup': 'Sinus VPN - Top Up',
+                'howtouse': 'Sinus VPN - How to Use',
+                'loyalty': 'Sinus VPN - Loyalty Program',
+                'about': 'Sinus VPN - About Us',
+                'contact': 'Sinus VPN - Contact Us',
+                'refund': 'Sinus VPN - Refund Policy',
+                'privacy': 'Sinus VPN - Privacy Policy',
+                'terms': 'Sinus VPN - Terms of Use'
             };
             
-            document.title = pageTitles[page] || 'Tonny VPN';
+            document.title = pageTitles[page] || 'Sinus VPN';
         }
         
         function selectPlan(planCard) {
@@ -1846,11 +2222,305 @@
                 switchElement.classList.remove('active');
                 enText.classList.add('active');
                 ruText.classList.remove('active');
+                updateLanguage('en');
+                localStorage.setItem('language', 'en');
             } else {
                 switchElement.classList.add('active');
                 enText.classList.remove('active');
                 ruText.classList.add('active');
+                updateLanguage('ru');
+                localStorage.setItem('language', 'ru');
             }
+        }
+
+        function updateLanguage(lang) {
+            const translations = {
+                en: {
+                    // Main Page
+                    'currentBalance': 'Current Balance',
+                    'chargeBalance': 'Charge Balance',
+                    'extendPlan': 'Extend your plan',
+                    'vpnServices': 'VPN Services',
+                    'buyVpn': 'Buy VPN',
+                    'connectVpn': 'Connect VPN',
+                    'inviteFriends': 'Invite Friends',
+                    'earnUpTo': 'Earn up to 25% from every friend',
+                    'invite': 'Invite',
+                    
+                    // Plans Page
+                    'currentPlanValidUntil': 'Current Plan Valid Until:',
+                    'chooseYourPlan': 'Choose your Plan',
+                    'selectPlan': 'Select Plan',
+                    'popular': 'Popular',
+                    'freeTrial': '2 days Free Trial',
+                    
+                    // Top Up Page
+                    'enterAmountToPay': 'Enter amount to pay',
+                    'selectPaymentMethod': 'Select Payment Method',
+                    'payFromBalance': 'Pay from Balance',
+                    'currentBalance': 'Current Balance:',
+                    'telegramStars': 'Telegram Stars',
+                    'usdt': 'USDT',
+                    'ton': 'TON',
+                    'otherMethods': 'Other Methods',
+                    'pay': 'Pay',
+                    
+                    // Connect Page
+                    'clickLinkBelow': 'Click the link below to connect via HAPP',
+                    'openHapp': 'Open HAPP',
+                    'manualSettings': 'Manual Settings',
+                    'useTheseSettings': 'Use these settings to manually configure VPN in any compatible app:',
+                    'serverAddress': 'Server Address:',
+                    'port': 'Port:',
+                    'protocol': 'Protocol:',
+                    'username': 'Username:',
+                    'copySettings': 'Copy Settings',
+                    'connectionInfo': 'Connection Info',
+                    'ping': 'Ping',
+                    'dataUsed': 'Data Used',
+                    
+                    // Settings Page
+                    'settings': 'Settings',
+                    'language': 'Language',
+                    'theme': 'Theme',
+                    'referralProgram': 'Referral Program',
+                    'paymentHistory': 'Payment History',
+                    'howToUse': 'How to Use',
+                    'loyaltyProgram': 'Loyalty Program',
+                    'aboutUs': 'About Us',
+                    'contactUs': 'Contact Us',
+                    'refundPolicy': 'Refund Policy',
+                    'privacyPolicy': 'Privacy Policy',
+                    'termsOfUse': 'Terms of Use',
+                    
+                    // Navigation
+                    'main': 'Main',
+                    'plans': 'Plans',
+                    'topup': 'Top Up',
+                    'connect': 'Connect',
+                    'settings': 'Settings',
+                    
+                    // Back button
+                    'backToSettings': 'Back to Settings',
+                    
+                    // Referral Program
+                    'yourReferralLink': 'Your Referral Link',
+                    'copyLink': 'Copy Link',
+                    'yourStatistics': 'Your Statistics',
+                    'totalReferrals': 'Total Referrals',
+                    'earnedAmount': 'Earned Amount',
+                    'availableForWithdraw': 'Available for Withdraw',
+                    'cooldown': 'Cooldown: 7 days',
+                    
+                    // Payment History
+                    'paymentHistory': 'Payment History',
+                    'noPaymentsYet': 'No payments yet',
+                    'paymentDate': 'Payment Date',
+                    'amount': 'Amount',
+                    'status': 'Status',
+                    
+                    // How to Use
+                    'howToUse': 'How to Use',
+                    'step1': 'Step 1: Download and Install',
+                    'step1Desc': 'Download our VPN app from the official store',
+                    'step2': 'Step 2: Create Account',
+                    'step2Desc': 'Register with your email or phone number',
+                    'step3': 'Step 3: Choose Plan',
+                    'step3Desc': 'Select the subscription plan that suits you',
+                    'step4': 'Step 4: Connect',
+                    'step4Desc': 'Press the connect button and enjoy secure browsing',
+                    
+                    // Loyalty Program
+                    'loyaltyProgram': 'Loyalty Program',
+                    'earnPoints': 'Earn Points',
+                    'pointsDescription': 'Earn points for every purchase and referral',
+                    'currentPoints': 'Current Points',
+                    'redeemPoints': 'Redeem Points',
+                    
+                    // About Us
+                    'aboutUs': 'About Us',
+                    'aboutDescription': 'Sinus VPN is a premium VPN service that provides secure and private internet access worldwide.',
+                    'ourMission': 'Our Mission',
+                    'missionDescription': 'To provide fast, secure, and reliable VPN services to protect your online privacy.',
+                    
+                    // Contact Us
+                    'contactUs': 'Contact Us',
+                    'getInTouch': 'Get in Touch',
+                    'contactDescription': 'Have questions? We are here to help!',
+                    'email': 'Email',
+                    'telegram': 'Telegram',
+                    'support': 'Support',
+                    
+                    // Refund Policy
+                    'refundPolicy': 'Refund Policy',
+                    'refundTitle': '30-Day Money Back Guarantee',
+                    'refundDescription': 'If you are not satisfied with our service, you can request a full refund within 30 days.',
+                    'refundProcess': 'Refund Process',
+                    'refundSteps': 'Contact support → Provide order details → Receive refund within 5 business days',
+                    
+                    // Privacy Policy
+                    'privacyPolicy': 'Privacy Policy',
+                    'privacyTitle': 'Your Privacy Matters',
+                    'privacyDescription': 'We do not log your online activities. Your data is encrypted and secure.',
+                    'dataCollection': 'Data Collection',
+                    'dataDescription': 'We only collect necessary information to provide our service.',
+                    
+                    // Terms of Use
+                    'termsOfUse': 'Terms of Use',
+                    'termsTitle': 'Terms and Conditions',
+                    'termsDescription': 'By using our service, you agree to our terms and conditions.',
+                    'userAgreement': 'User Agreement',
+                    'agreementDescription': 'Users must comply with local laws and regulations while using our service.'
+                },
+                ru: {
+                    // Main Page
+                    'currentBalance': 'Текущий баланс',
+                    'chargeBalance': 'Пополнить баланс',
+                    'extendPlan': 'Продлить план',
+                    'vpnServices': 'VPN Сервисы',
+                    'buyVpn': 'Купить VPN',
+                    'connectVpn': 'Подключить VPN',
+                    'inviteFriends': 'Пригласить друзей',
+                        'earnUpTo': 'Зарабатывайте до 25% с каждого приглашения',
+                    'invite': 'Пригласить',
+                    
+                    // Plans Page
+                    'currentPlanValidUntil': 'Текущий план действует до:',
+                    'chooseYourPlan': 'Выберите свой план',
+                    'selectPlan': 'Выбрать план',
+                    'popular': 'Популярный',
+                    'freeTrial': '2 дня бесплатно',
+                    
+                    // Top Up Page
+                    'enterAmountToPay': 'Введите сумму к оплате',
+                    'selectPaymentMethod': 'Выберите способ оплаты',
+                    'payFromBalance': 'Оплатить с баланса',
+                    'currentBalance': 'Текущий баланс:',
+                    'telegramStars': 'Telegram Stars',
+                    'usdt': 'USDT',
+                    'ton': 'TON',
+                    'otherMethods': 'Другие способы',
+                    'pay': 'Оплатить',
+                    
+                    // Connect Page
+                    'clickLinkBelow': 'Нажмите на ссылку ниже для подключения через HAPP',
+                    'openHapp': 'Открыть HAPP',
+                    'manualSettings': 'Ручные настройки',
+                    'useTheseSettings': 'Используйте эти настройки для ручной настройки VPN в любом совместимом приложении:',
+                    'serverAddress': 'Адрес сервера:',
+                    'port': 'Порт:',
+                    'protocol': 'Протокол:',
+                    'username': 'Имя пользователя:',
+                    'copySettings': 'Копировать настройки',
+                    'connectionInfo': 'Информация о подключении',
+                    'ping': 'Пинг',
+                    'dataUsed': 'Использовано данных',
+                    
+                    // Settings Page
+                    'settings': 'Настройки',
+                    'language': 'Язык',
+                    'theme': 'Тема',
+                    'referralProgram': 'Реферальная программа',
+                    'paymentHistory': 'История платежей',
+                    'howToUse': 'Как пользоваться',
+                    'loyaltyProgram': 'Программа лояльности',
+                    'aboutUs': 'О нас',
+                    'contactUs': 'Связаться с нами',
+                    'refundPolicy': 'Политика возврата',
+                    'privacyPolicy': 'Политика конфиденциальности',
+                    'termsOfUse': 'Условия использования',
+                    
+                    // Navigation
+                    'main': 'Главная',
+                    'plans': 'Планы',
+                    'topup': 'Пополнение',
+                    'connect': 'Подключение',
+                    'settings': 'Настройки',
+                    
+                    // Back button
+                    'backToSettings': 'Назад к настройкам',
+                    
+                    // Referral Program
+                    'yourReferralLink': 'Ваша реферальная ссылка',
+                    'copyLink': 'Копировать ссылку',
+                    'yourStatistics': 'Ваша статистика',
+                    'totalReferrals': 'Всего рефералов',
+                    'earnedAmount': 'Заработано',
+                    'availableForWithdraw': 'Доступно для вывода',
+                    'cooldown': 'Период ожидания: 7 дней',
+                    
+                    // Payment History
+                    'paymentHistory': 'История платежей',
+                    'noPaymentsYet': 'Платежей пока нет',
+                    'paymentDate': 'Дата платежа',
+                    'amount': 'Сумма',
+                    'status': 'Статус',
+                    
+                    // How to Use
+                    'howToUse': 'Как пользоваться',
+                    'step1': 'Шаг 1: Скачать и установить',
+                    'step1Desc': 'Скачайте наше VPN приложение из официального магазина',
+                    'step2': 'Шаг 2: Создать аккаунт',
+                    'step2Desc': 'Зарегистрируйтесь с помощью email или номера телефона',
+                    'step3': 'Шаг 3: Выбрать план',
+                    'step3Desc': 'Выберите подходящий план подписки',
+                    'step4': 'Шаг 4: Подключиться',
+                    'step4Desc': 'Нажмите кнопку подключения и наслаждайтесь безопасным серфингом',
+                    
+                    // Loyalty Program
+                    'loyaltyProgram': 'Программа лояльности',
+                    'earnPoints': 'Зарабатывайте баллы',
+                    'pointsDescription': 'Получайте баллы за каждую покупку и реферала',
+                    'currentPoints': 'Текущие баллы',
+                    'redeemPoints': 'Потратить баллы',
+                    
+                    // About Us
+                    'aboutUs': 'О нас',
+                    'aboutDescription': 'Sinus VPN - это премиум VPN сервис, который обеспечивает безопасный и приватный доступ к интернету по всему миру.',
+                    'ourMission': 'Наша миссия',
+                    'missionDescription': 'Предоставлять быстрые, безопасные и надежные VPN услуги для защиты вашей онлайн приватности.',
+                    
+                    // Contact Us
+                    'contactUs': 'Связаться с нами',
+                    'getInTouch': 'Связаться',
+                    'contactDescription': 'Есть вопросы? Мы здесь, чтобы помочь!',
+                    'email': 'Email',
+                    'telegram': 'Telegram',
+                    'support': 'Поддержка',
+                    
+                    // Refund Policy
+                    'refundPolicy': 'Политика возврата',
+                    'refundTitle': '30-дневная гарантия возврата денег',
+                    'refundDescription': 'Если вы не удовлетворены нашим сервисом, вы можете запросить полный возврат в течение 30 дней.',
+                    'refundProcess': 'Процесс возврата',
+                    'refundSteps': 'Связаться с поддержкой → Предоставить детали заказа → Получить возврат в течение 5 рабочих дней',
+                    
+                    // Privacy Policy
+                    'privacyPolicy': 'Политика конфиденциальности',
+                    'privacyTitle': 'Ваша приватность важна',
+                    'privacyDescription': 'Мы не логируем вашу онлайн активность. Ваши данные зашифрованы и защищены.',
+                    'dataCollection': 'Сбор данных',
+                    'dataDescription': 'Мы собираем только необходимую информацию для предоставления нашего сервиса.',
+                    
+                    // Terms of Use
+                    'termsOfUse': 'Условия использования',
+                    'termsTitle': 'Условия и положения',
+                    'termsDescription': 'Используя наш сервис, вы соглашаетесь с нашими условиями и положениями.',
+                    'userAgreement': 'Пользовательское соглашение',
+                    'agreementDescription': 'Пользователи должны соблюдать местные законы и правила при использовании нашего сервиса.'
+                }
+            };
+            
+            const texts = translations[lang];
+            if (!texts) return;
+            
+            // Update all text elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (texts[key]) {
+                    element.textContent = texts[key];
+                }
+            });
         }
         
         function toggleTheme() {
@@ -1871,7 +2541,7 @@
             }
         }
         
-        // Initialize theme on page load
+        // Initialize theme and language on page load
         function initializeTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             const body = document.body;
@@ -1887,6 +2557,27 @@
             }
         }
         
+        function initializeLanguage() {
+            const savedLanguage = localStorage.getItem('language') || 'en';
+            updateLanguage(savedLanguage);
+            
+            // Set language toggle state
+            const languageToggle = document.getElementById('languageToggle');
+            const languageSwitchElement = languageToggle.parentElement;
+            const enText = document.getElementById('languageText');
+            const ruText = document.getElementById('languageTextRu');
+            
+            if (savedLanguage === 'ru') {
+                languageSwitchElement.classList.add('active');
+                enText.classList.remove('active');
+                ruText.classList.add('active');
+            } else {
+                languageSwitchElement.classList.remove('active');
+                enText.classList.add('active');
+                ruText.classList.remove('active');
+            }
+        }
+        
         function copySettings() {
             const settings = `Server: vpn.tonny.com\nPort: 1194\nProtocol: UDP\nUsername: user123`;
             navigator.clipboard.writeText(settings).then(() => {
@@ -1895,7 +2586,7 @@
         }
         
         function copyReferralLink() {
-            const link = 'https://t.me/tonny_vpn_bot?start=ref123456';
+            const link = 'https://t.me/sinus_vpn_bot?start=ref123456';
             navigator.clipboard.writeText(link).then(() => {
                 alert('Referral link copied to clipboard!');
             });
@@ -1952,20 +2643,14 @@
             // Add selection to clicked option
             element.classList.add('selected');
             
-            // Here you would implement subscription selection logic
-            const duration = element.querySelector('.subscription-duration').textContent;
-            const price = element.querySelector('.subscription-price').textContent;
-            
-            // For demo purposes, show confirmation
-            setTimeout(() => {
-                alert(`Selected ${duration} subscription for ${price}. Redirecting to payment...`);
-                showPage('topup');
-            }, 500);
+            // Direct redirect to payment page
+            showPage('topup');
         }
         
         // Initialize theme when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initializeTheme();
+            initializeLanguage();
         });
     </script>
 </body>

@@ -13,7 +13,7 @@
 ## Структура проекта
 
 ```
-arbitration_pricing_analysis/
+arbitration_analysis/
 ├── data/                    # Исходные CSV файлы
 ├── output/                  # Результаты анализа
 ├── backup/                  # Резервные копии
@@ -27,6 +27,7 @@ arbitration_pricing_analysis/
 ## Установка
 
 ```bash
+cd arbitration_analysis
 pip install -r requirements.txt
 ```
 
@@ -48,3 +49,4 @@ pip install -r requirements.txt
 - `producerAmount` - цена закупки
 - `all_orders` - количество
 - `Profit` - прибыль
+
