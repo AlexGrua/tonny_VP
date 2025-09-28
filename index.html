@@ -500,6 +500,326 @@
             color: var(--secondary-color);
         }
         
+        /* New Plans Structure Styles */
+        .plans-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .plan-card {
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 8px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card.selected {
+            border-color: #8b5cf6;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #f59e0b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .plan-header {
+            margin-bottom: 2px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .plan-title-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-start;
+            gap: 8px;
+            min-height: 28px;
+            width: 100%;
+        }
+        
+        .plan-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+        
+        .plan-features {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 1px;
+        }
+        
+        .recommended-badge {
+            color: #8b5cf6;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .plan-pricing {
+            display: flex;
+            align-items: baseline;
+            margin: 0;
+        }
+        
+        .plan-pricing-top {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            display: flex;
+            align-items: baseline;
+        }
+        
+        .plan-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-right: 2px;
+        }
+        
+        .plan-period {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .plan-periods {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+        
+        .period-btn {
+            flex: 1;
+            padding: 6px 8px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .period-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .period-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .plan-buy-btn {
+            width: 100%;
+            padding: 4px 8px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        /* Desktop Sidebar Styles */
+        .desktop-sidebar {
+            display: none;
+        }
+        
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 20px;
+        }
+        
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-color);
+            font-size: 16px;
+            font-weight: 600;
+            background: transparent;
+            border: 2px solid transparent;
+        }
+        
+        .sidebar-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(4px);
+        }
+        
+        .sidebar-item.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .sidebar-item svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Sidebar Subcategories Styles */
+        .sidebar-subcategories {
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            margin-left: 20px;
+            margin-top: 4px;
+        }
+        
+        .sidebar-subitem {
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-color);
+            font-size: 12px;
+            font-weight: 500;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+        
+        .sidebar-subitem:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(4px);
+        }
+        
+        .sidebar-subitem.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* Desktop Header Styles */
+        .desktop-header {
+            display: none;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: var(--card-background);
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .header-left {
+            flex: 0 0 auto;
+            margin-left: 220px;
+        }
+        
+        .header-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .header-logo:hover {
+            color: var(--primary-hover);
+            opacity: 0.8;
+        }
+        
+        .header-right {
+            flex: 0 0 auto;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .header-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .header-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .header-btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .header-btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+        
+        /* Settings Subcategories Styles */
+        .settings-subcategories {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .subcategory-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 600;
+            background: transparent;
+            border: 1px solid transparent;
+            margin-left: 20px;
+        }
+        
+        .subcategory-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        .subcategory-item.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
         .check-icon {
             width: 16px;
             height: 16px;
@@ -738,55 +1058,74 @@
                 margin-bottom: 4px !important;
             }
             
-            /* Первый блок с балансом - значительно компактнее */
+            /* Current Balance Mobile Styles */
             #plans-page .card:first-child {
-                padding: 6px !important;
-                min-height: 30px !important;
+                padding: 3px !important;
+                min-height: 15px !important;
             }
             
             #plans-page .card:first-child div {
-                font-size: 14px !important;
-                margin-bottom: 2px !important;
+                font-size: 12px !important;
+                margin-bottom: 1px !important;
             }
             
-            #plans-page .card:first-child div[style*="font-size: 16px"] {
-                font-size: 14px !important;
-            }
-            
-            #plans-page .card:first-child div[style*="font-size: 28px"] {
-                font-size: 20px !important;
-            }
-            
-            #plans-page .card:first-child div[style*="font-size: 18px"] {
+            #plans-page .card:first-child span[style*="font-size: 20px"] {
                 font-size: 16px !important;
             }
             
-            /* Планы подписки - компактнее */
-            .subscription-option {
-                min-height: 80px !important;
-                padding: 8px !important;
-            }
-            
-            .subscription-duration {
+            #plans-page .card:first-child span[style*="font-size: 18px"] {
                 font-size: 14px !important;
             }
             
-            .subscription-price {
+            /* New Plans Mobile Styles */
+            .plans-container {
+                gap: 8px !important;
+            }
+            
+            .plan-card {
+                padding: 6px !important;
+            }
+            
+            .plan-title-row {
+                min-height: 24px !important;
+                gap: 6px !important;
+                justify-content: flex-start !important;
+                align-items: baseline !important;
+            }
+            
+            
+            .plan-title {
+                font-size: 16px !important;
+            }
+            
+            .plan-features {
+                font-size: 14px !important;
+            }
+            
+            .plan-price {
                 font-size: 18px !important;
             }
             
-            /* Кнопки Select Plan - крупнее для мобильной версии */
-            .subscription-option .btn {
-                padding: 12px 16px !important;
-                font-size: 16px !important;
-                font-weight: 600 !important;
-                min-height: 44px !important;
+            .plan-period {
+                font-size: 12px !important;
             }
             
-            /* Free Trial блок - компактнее */
-            #plans-page .card:last-child {
-                padding: 6px !important;
-                min-height: 30px !important;
+            .period-btn {
+                padding: 5px 6px !important;
+                font-size: 12px !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            
+            .plan-buy-btn {
+                padding: 3px 6px !important;
+                font-size: 9px !important;
+            }
+            
+            /* Hide Plans in mobile navigation */
+            .nav-item[onclick*="plans"] {
+                display: none !important;
             }
             
             /* Страница оплаты - улучшения для мобильной версии */
@@ -878,6 +1217,19 @@
             
             .container {
                 max-width: 560px;
+            }
+            
+            .period-btn {
+                padding: 6px 8px;
+                font-size: 13px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .plan-title-row {
+                justify-content: flex-start;
+                align-items: baseline;
             }
             
             /* Referral Program - улучшенная подача информации */
@@ -1011,7 +1363,57 @@
             }
             
             .container {
-                max-width: 840px;
+                max-width: 600px;
+                margin-left: 220px;
+            }
+            
+            /* Desktop Sidebar */
+            .desktop-sidebar {
+                display: block;
+                position: fixed;
+                left: 0;
+                top: 80px;
+                bottom: 0;
+                width: 200px;
+                background: var(--card-background);
+                border-right: 2px solid var(--border-color);
+                z-index: 1000;
+            }
+            
+            /* Hide mobile navigation on desktop */
+            .bottom-nav {
+                display: none;
+            }
+            
+            /* Add left padding to body for sidebar */
+            body {
+                padding-left: 220px;
+                padding-top: 80px;
+            }
+            
+            /* Show desktop header */
+            .desktop-header {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 999;
+            }
+            
+            /* Show sidebar subcategories on desktop */
+            .sidebar-subcategories {
+                display: flex;
+            }
+            
+            /* Hide settings subcategories from main content on desktop */
+            #settings-page .settings-subcategories {
+                display: none;
+            }
+            
+            /* Hide page titles on desktop (they're in sidebar) */
+            .header-content-new h1 {
+                display: none;
             }
             
             /* Referral Program - улучшенная подача информации */
@@ -1596,46 +1998,85 @@
 
             <div class="content">
                 <!-- Current Balance & Plan -->
-            <div class="card" style="text-align: center; padding: 8px; min-height: 50px;">
-                <div style="font-size: 16px; font-weight: bold; color: var(--text-color); margin-bottom: 2px;" data-translate="currentBalance">Current Balance</div>
-                <div style="font-size: 28px; font-weight: bold; color: #06b6d4; margin-bottom: 6px;">$42.50</div>
-                
-                <div style="font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 2px;" data-translate="currentPlanValidUntil">Current Plan Valid Until:</div>
-                <div style="font-size: 18px; font-weight: bold; color: #06b6d4;">27.10.2025</div>
-            </div>
-
-                <!-- Subscription Options -->
-                <div class="card">
-                    <h3 style="font-size: 28px; font-weight: 700; color: var(--text-color); margin-bottom: 20px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.1);" data-translate="chooseYourPlan">Choose your Plan</h3>
+                <div class="card" style="text-align: center; padding: 4px; min-height: 20px;">
+                    <div style="font-size: 16px; font-weight: bold; color: var(--text-color); margin-bottom: 2px;">
+                        <span data-translate="currentBalance">Current Balance:</span> <span style="font-size: 20px; font-weight: bold; color: #06b6d4;">$42.50</span>
+                    </div>
                     
-                    <div class="subscription-options plans-grid">
-                        <!-- 1 Month -->
-                        <div class="subscription-option" onclick="selectSubscription(this, '1month')">
-                            <div class="subscription-info">
-                                <span class="subscription-duration">1 month</span>
-                                <span class="subscription-price">$3</span>
+                    <div style="font-size: 16px; font-weight: 600; color: var(--text-color);">
+                        <span data-translate="currentPlanValid">Current Plan Valid:</span> <span style="font-size: 18px; font-weight: bold; color: #06b6d4;">27.10.2025</span>
+                    </div>
+                </div>
+
+                <!-- Choose a Plan Header -->
+                <div class="card">
+                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-color); margin-bottom: 8px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.1);" data-translate="chooseAPlan">Choose a plan</h3>
+                    
+                    <!-- Plans Container -->
+                    <div class="plans-container">
+                        <!-- Starter Plan -->
+                        <div class="plan-card" id="starter-plan">
+                            <div class="plan-pricing plan-pricing-top">
+                                <div class="plan-price" id="starter-price">$4</div>
+                                <div class="plan-period" id="starter-period" data-translate="perMonth"> / month</div>
                             </div>
-                            <button class="btn btn-outline" style="margin-top: auto;" data-translate="selectPlan">Select Plan</button>
-                        </div>
-                        
-                        <!-- 3 Months (Popular) -->
-                        <div class="subscription-option popular" onclick="selectSubscription(this, '3months')">
-                            <div class="popular-badge" data-translate="popular">Popular</div>
-                            <div class="subscription-info">
-                                <span class="subscription-duration">3 months</span>
-                                <span class="subscription-price">$8</span>
+                            <div class="plan-header">
+                                <div class="plan-title-row">
+                                    <h4 class="plan-title" data-translate="starter">Starter</h4>
+                                    <div class="plan-features" data-translate="starterFeatures">1 device • Basic speed</div>
+                                </div>
                             </div>
-                            <button class="btn btn-primary" style="margin-top: auto;" data-translate="selectPlan">Select Plan</button>
-                        </div>
-                        
-                        <!-- 12 Months -->
-                        <div class="subscription-option" onclick="selectSubscription(this, '12months')">
-                            <div class="subscription-info">
-                                <span class="subscription-duration">12 months</span>
-                                <span class="subscription-price">$30</span>
+                            <div class="plan-periods">
+                                <button class="period-btn" data-plan="starter" data-period="1" data-price="4" data-text="month">$4 / 1 month</button>
+                                <button class="period-btn" data-plan="starter" data-period="3" data-price="9" data-text="3months">$9 / 3 months</button>
+                                <button class="period-btn" data-plan="starter" data-period="12" data-price="29" data-text="12months">$29 / 12 months</button>
                             </div>
-                            <button class="btn btn-outline" style="margin-top: auto;" data-translate="selectPlan">Select Plan</button>
                         </div>
+
+                        <!-- Popular Plan -->
+                        <div class="plan-card" id="popular-plan">
+                            <div class="plan-pricing plan-pricing-top">
+                                <div class="plan-price" id="popular-price">$5</div>
+                                <div class="plan-period" id="popular-period" data-translate="perMonth"> / month</div>
+                            </div>
+                            <div class="plan-header">
+                                <div class="plan-title-row">
+                                    <h4 class="plan-title" data-translate="popular">Popular</h4>
+                                    <div class="plan-features" data-translate="popularFeatures">3 devices • High speed</div>
+                                </div>
+                            </div>
+                            <div class="plan-periods">
+                                <button class="period-btn" data-plan="popular" data-period="1" data-price="5" data-text="month">$5 / 1 month</button>
+                                <button class="period-btn" data-plan="popular" data-period="3" data-price="12" data-text="3months">$12 / 3 months</button>
+                                <button class="period-btn" data-plan="popular" data-period="12" data-price="35" data-text="12months">$35 / 12 months</button>
+                            </div>
+                        </div>
+
+                        <!-- Pro Plan -->
+                        <div class="plan-card" id="pro-plan">
+                            <div class="plan-pricing plan-pricing-top">
+                                <div class="plan-price" id="pro-price">$7</div>
+                                <div class="plan-period" id="pro-period" data-translate="perMonth"> / month</div>
+                            </div>
+                            <div class="plan-header">
+                                <div class="plan-title-row">
+                                    <h4 class="plan-title" data-translate="pro">Pro</h4>
+                                    <div class="plan-features" data-translate="proFeatures">10 devices • Priority support</div>
+                                </div>
+                            </div>
+                            <div class="plan-periods">
+                                <button class="period-btn" data-plan="pro" data-period="1" data-price="7" data-text="month">$7 / 1 month</button>
+                                <button class="period-btn" data-plan="pro" data-period="3" data-price="18" data-text="3months">$18 / 3 months</button>
+                                <button class="period-btn" data-plan="pro" data-period="12" data-price="59" data-text="12months">$59 / 12 months</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- General Buy Button -->
+                    <div style="text-align: center; margin-top: 4px;">
+                        <button class="btn btn-primary" id="general-buy-btn" onclick="processPlanPurchase()" style="width: 100%; padding: 16px 20px; font-size: 18px; font-weight: 600;" data-translate="selectPlanAndPeriod">
+                            Select a plan and period
+                        </button>
                     </div>
                 </div>
 
@@ -1655,6 +2096,34 @@
             </div>
 
             <div class="content">
+                <!-- Settings Subcategories -->
+                <div class="settings-subcategories">
+                    <div class="subcategory-item active" onclick="showSettingsSubmenu('general')">
+                        <span data-translate="generalSettings">General Settings</span>
+                    </div>
+                    <div class="subcategory-item" onclick="showSettingsSubmenu('howtouse')">
+                        <span data-translate="howToUse">How to Use</span>
+                    </div>
+                    <div class="subcategory-item" onclick="showSettingsSubmenu('loyalty')">
+                        <span data-translate="loyaltyProgram">Loyalty Program</span>
+                    </div>
+                    <div class="subcategory-item" onclick="showSettingsSubmenu('about')">
+                        <span data-translate="aboutUs">About Us</span>
+                    </div>
+                    <div class="subcategory-item" onclick="showSettingsSubmenu('contact')">
+                        <span data-translate="contactUs">Contact Us</span>
+                    </div>
+                    <div class="subcategory-item" onclick="showSettingsSubmenu('refund')">
+                        <span data-translate="refundPolicy">Refund Policy</span>
+                    </div>
+                    <div class="subcategory-item" onclick="showSettingsSubmenu('privacy')">
+                        <span data-translate="privacyPolicy">Privacy Policy</span>
+                    </div>
+                    <div class="subcategory-item" onclick="showSettingsSubmenu('terms')">
+                        <span data-translate="termsOfUse">Terms of Use</span>
+                    </div>
+                </div>
+                
                 <div class="settings-grid">
                     <!-- Settings Controls -->
                     <div class="card" style="padding: 8px; min-height: 50px;">
@@ -2319,7 +2788,107 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
+        <!-- Login Page -->
+        <div id="login-page" class="page">
+            <div class="header-unified">
+                <div class="header-content-new">
+                    <h1>Sinus VPN</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="card">
+                    <h3 style="font-size: 24px; font-weight: 700; color: var(--text-color); margin-bottom: 20px; text-align: center;" data-translate="signIn">Sign In</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;" data-translate="email">Email</label>
+                        <input type="email" id="login-email" style="width: 100%; padding: 12px 16px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 16px; background: var(--card-background); color: var(--text-color);" placeholder="Enter your email">
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-size: 16px; font-weight: 600; color: var(--text-color); margin-bottom: 8px;" data-translate="password">Password</label>
+                        <input type="password" id="login-password" style="width: 100%; padding: 12px 16px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 16px; background: var(--card-background); color: var(--text-color);" placeholder="Enter your password">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="processLogin()" style="width: 100%; margin-bottom: 16px;" data-translate="signIn">Sign In</button>
+                    
+                    <div style="text-align: center;">
+                        <button class="btn" onclick="showPage('main')" data-translate="backToMain">Back to Main</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop Sidebar -->
+        <div class="desktop-sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-item active" onclick="showPage('main')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span data-translate="main">Main</span>
+                </div>
+                <div class="sidebar-item" onclick="showPage('plans')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span data-translate="plans">Plans</span>
+                </div>
+                <div class="sidebar-item" onclick="showSettingsGeneral()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span data-translate="settings">Settings</span>
+                </div>
+                
+                <!-- Settings Subcategories -->
+                <div class="sidebar-subcategories">
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('referral')">
+                        <span data-translate="referralProgram">Referral Program</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('paymenthistory')">
+                        <span data-translate="paymentHistory">Payment History</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('howtouse')">
+                        <span data-translate="howToUse">How to Use</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('loyalty')">
+                        <span data-translate="loyaltyProgram">Loyalty Program</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('about')">
+                        <span data-translate="aboutUs">About Us</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('contact')">
+                        <span data-translate="contactUs">Contact Us</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('refund')">
+                        <span data-translate="refundPolicy">Refund Policy</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('privacy')">
+                        <span data-translate="privacyPolicy">Privacy Policy</span>
+                    </div>
+                    <div class="sidebar-subitem" onclick="showSettingsSubmenu('terms')">
+                        <span data-translate="termsOfUse">Terms of Use</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop Header -->
+        <div class="desktop-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="header-logo" onclick="showPage('main')">Sinus VPN</h1>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn" onclick="toggleLanguage()" data-translate="language">Language</button>
+                    <button class="header-btn header-btn-primary" onclick="showPage('login')" data-translate="signIn">Log in</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation (Mobile) -->
         <div class="bottom-nav">
             <div class="nav-content">
                 <div class="nav-item active" onclick="showPage('main')">
@@ -2327,12 +2896,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     <span data-translate="main">Main</span>
-                </div>
-                <div class="nav-item" onclick="showPage('plans')">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span data-translate="plans">Plans</span>
                 </div>
                 <div class="nav-item" onclick="showPage('settings')">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2351,12 +2914,35 @@
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(page + '-page').classList.add('active');
             
-            // Update navigation
+            // Update mobile navigation
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
             if (event && event.target && event.target.closest('.nav-item')) {
                 event.target.closest('.nav-item').classList.add('active');
+            }
+            
+            // Update desktop sidebar navigation
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.sidebar-subitem').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Set active state based on page
+            if (page === 'main') {
+                document.querySelector('.sidebar-item[onclick*="main"]').classList.add('active');
+            } else if (page === 'plans') {
+                document.querySelector('.sidebar-item[onclick*="plans"]').classList.add('active');
+            } else if (page === 'settings') {
+                document.querySelector('.sidebar-item[onclick*="showSettingsGeneral"]').classList.add('active');
+            } else {
+                // For subcategory pages, highlight the corresponding subitem
+                const subitem = document.querySelector(`.sidebar-subitem[onclick*="${page}"]`);
+                if (subitem) {
+                    subitem.classList.add('active');
+                }
             }
             
             // Update page title
@@ -2426,11 +3012,33 @@
                     'invite': 'Invite',
                     
                     // Plans Page
-                    'currentPlanValidUntil': 'Current Plan Valid Until:',
-                    'chooseYourPlan': 'Choose your Plan',
+                    'currentBalance': 'Current Balance:',
+                    'currentPlanValid': 'Current Plan Valid:',
+                    'chooseAPlan': 'Choose a plan',
                     'selectPlan': 'Select Plan',
                     'popular': 'Popular',
                     'freeTrial': '2 days Free Trial',
+                    'starter': 'Starter',
+                    'starterFeatures': '1 device • Basic speed',
+                    'popularFeatures': '3 devices • High speed',
+                    'pro': 'Pro',
+                    'proFeatures': '10 devices • Priority support',
+                    'recommended': 'Recommended',
+                    'perMonth': ' / month',
+                    'buyStarter': 'Buy Starter',
+                    'buyPopular': 'Buy Popular',
+                    'buyPro': 'Buy Pro',
+                    'selectPlanAndPeriod': 'Select a plan and period',
+                    'language': 'Language',
+                    'signIn': 'Sign In',
+                    'month': 'month',
+                    '3months': '3 months',
+                    '12months': '12 months',
+                    'email': 'Email',
+                    'password': 'Password',
+                    'backToMain': 'Back to Main',
+                    'generalSettings': 'General Settings',
+                    'theme': 'Theme',
                     
                     // Top Up Page
                     'enterAmountToPay': 'Enter amount to pay',
@@ -2563,11 +3171,33 @@
                     'invite': 'Пригласить',
                     
                     // Plans Page
-                    'currentPlanValidUntil': 'Текущий план действует до:',
-                    'chooseYourPlan': 'Выберите свой план',
+                    'currentBalance': 'Текущий баланс:',
+                    'currentPlanValid': 'Текущий план действует:',
+                    'chooseAPlan': 'Выберите план',
                     'selectPlan': 'Выбрать план',
                     'popular': 'Популярный',
                     'freeTrial': '2 дня бесплатно',
+                    'starter': 'Стартовый',
+                    'starterFeatures': '1 устройство • Базовая скорость',
+                    'popularFeatures': '3 устройства • Высокая скорость',
+                    'pro': 'Профессиональный',
+                    'proFeatures': '10 устройств • Приоритетная поддержка',
+                    'recommended': 'Рекомендуется',
+                    'perMonth': ' / месяц',
+                    'buyStarter': 'Купить Стартовый',
+                    'buyPopular': 'Купить Популярный',
+                    'buyPro': 'Купить Профессиональный',
+                    'selectPlanAndPeriod': 'Выберите план и период',
+                    'language': 'Язык',
+                    'signIn': 'Войти',
+                    'month': 'месяц',
+                    '3months': '3 месяца',
+                    '12months': '12 месяцев',
+                    'email': 'Email',
+                    'password': 'Пароль',
+                    'backToMain': 'Назад на главную',
+                    'generalSettings': 'Общие настройки',
+                    'theme': 'Тема',
                     
                     // Top Up Page
                     'enterAmountToPay': 'Введите сумму к оплате',
@@ -2839,10 +3469,181 @@
             showPage('topup');
         }
         
+        // New function for period selection
+        function selectPeriod(button) {
+            const plan = button.dataset.plan;
+            const period = button.dataset.period;
+            const price = button.dataset.price;
+            const text = button.dataset.text;
+            
+            // Remove active class from ALL period buttons in ALL plans
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Remove selected class from ALL plan cards
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add active class only to clicked button
+            button.classList.add('active');
+            
+            // Add selected class to the plan card
+            const planCard = document.getElementById(plan + '-plan');
+            planCard.classList.add('selected');
+            
+            // Update price and period display for the selected plan
+            const priceElement = document.getElementById(plan + '-price');
+            const periodElement = document.getElementById(plan + '-period');
+            
+            priceElement.textContent = '$' + price;
+            
+            // Update period text based on selection
+            const currentLang = localStorage.getItem('language') || 'en';
+            const translations = {
+                en: { 'month': 'month', '3months': '3 months', '12months': '12 months' },
+                ru: { 'month': 'месяц', '3months': '3 месяца', '12months': '12 месяцев' }
+            };
+            
+            if (period === '1') {
+                periodElement.textContent = ' / ' + translations[currentLang]['month'];
+            } else if (period === '3') {
+                periodElement.textContent = ' / ' + translations[currentLang]['3months'];
+            } else if (period === '12') {
+                periodElement.textContent = ' / ' + translations[currentLang]['12months'];
+            }
+            
+            // Update general buy button
+            updateGeneralBuyButton(plan, price, periodElement.textContent);
+        }
+        
+        // Function to update general buy button
+        function updateGeneralBuyButton(plan, price, period) {
+            const generalBuyBtn = document.getElementById('general-buy-btn');
+            const currentLang = localStorage.getItem('language') || 'en';
+            
+            let planName = '';
+            if (plan === 'starter') {
+                planName = currentLang === 'ru' ? 'Стартовый' : 'Starter';
+            } else if (plan === 'popular') {
+                planName = currentLang === 'ru' ? 'Популярный' : 'Popular';
+            } else if (plan === 'pro') {
+                planName = currentLang === 'ru' ? 'Профессиональный' : 'Pro';
+            }
+            
+            const buyText = currentLang === 'ru' ? 'Купить' : 'Buy';
+            generalBuyBtn.textContent = `${buyText} ${planName} $${price}${period}`;
+        }
+        
+        // Function to process plan purchase
+        function processPlanPurchase() {
+            // Find the selected plan and period
+            let selectedPlan = null;
+            let selectedPeriod = null;
+            let selectedPrice = null;
+            
+            document.querySelectorAll('.plan-card').forEach(card => {
+                const activeBtn = card.querySelector('.period-btn.active');
+                if (activeBtn) {
+                    selectedPlan = activeBtn.dataset.plan;
+                    selectedPeriod = activeBtn.dataset.period;
+                    selectedPrice = activeBtn.dataset.price;
+                }
+            });
+            
+            if (selectedPlan && selectedPeriod && selectedPrice) {
+                // Store selection for payment page
+                localStorage.setItem('selectedPlan', selectedPlan);
+                localStorage.setItem('selectedPeriod', selectedPeriod);
+                localStorage.setItem('selectedPrice', selectedPrice);
+                
+                // Redirect to payment page
+                showPage('topup');
+            } else {
+                // Show alert if no plan is selected
+                const currentLang = localStorage.getItem('language') || 'en';
+                const message = currentLang === 'ru' ? 
+                    'Пожалуйста, выберите план и период' : 
+                    'Please select a plan and period';
+                alert(message);
+            }
+        }
+        
+        // Initialize period buttons with click handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.period-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    selectPeriod(this);
+                });
+            });
+        });
+        
+        // Function to show settings submenu
+        function showSettingsSubmenu(submenu) {
+            // Handle different submenus
+            if (submenu === 'general') {
+                // Show general settings (already visible)
+                return;
+            } else {
+                // Navigate to other pages (showPage will handle highlighting)
+                showPage(submenu);
+            }
+        }
+        
+        // Function to handle Settings click - show general settings
+        function showSettingsGeneral() {
+            // Show settings page with general settings (showPage will handle highlighting)
+            showPage('settings');
+        }
+        
+        // Login functionality
+        function processLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate login (in real app, this would be an API call)
+            if (email === 'admin@sinusvpn.com' && password === 'admin123') {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                updateLoginState();
+                showPage('main');
+                alert('Login successful!');
+            } else {
+                alert('Invalid email or password');
+            }
+        }
+        
+        function updateLoginState() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const signInBtn = document.querySelector('.header-btn-primary');
+            
+            if (isLoggedIn) {
+                signInBtn.textContent = 'Sign Out';
+                signInBtn.onclick = function() {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userEmail');
+                    updateLoginState();
+                    showPage('main');
+                };
+            } else {
+                signInBtn.textContent = 'Log in';
+                signInBtn.onclick = function() {
+                    showPage('login');
+                };
+            }
+        }
+        
         // Initialize theme when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initializeTheme();
             initializeLanguage();
+            updateLoginState();
         });
     </script>
 </body>
